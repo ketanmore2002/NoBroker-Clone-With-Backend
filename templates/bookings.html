@@ -1,0 +1,372 @@
+{% extends 'base.html' %}
+{% load socialaccount %}
+{% load static %}
+
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'bookings.css' %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+{% endblock css %}
+
+
+
+{% block content %}
+
+<div class="w-100 h-auto d-flex flex-column align-items-center justify-content-center" style="font-family: 'Open Sans', sans-serif; background-color: rgb(234, 240, 245);">
+    <div id="hook-container" class="container-md m-auto pb-5 mb-5 position-relative" style="max-width: 1100px; min-height: 100vh; height: fit-content; overflow-y: auto;">
+        <div class="w-100" style="height: 200px; background: linear-gradient(90deg,  #052df4, #32eade);">
+
+        </div>
+        <div class="m-auto mb-5 pb-5" style="max-width: 900px; width: 90%; position: absolute; top: 0; left: 50%; transform: translate(-50%, 0);">
+            <div  class="w-100 m-auto pt-5 border-bottom pb-2" >
+                <span class="mx-3 fs-4 fw-light text-white">Registered Agreements </span>
+            </div>
+            {% if data %}
+            {% for obj in data %}
+            <div class="mt-3 bg-white" style="width: 100%; max-width: 900px; margin:auto">
+                <div class="w-100">
+                    <div class="w-100 px-3 py-3 px-lg-4 py-lg-4 rounded-3 " style="box-shadow: 0 0 10px grey;">
+                        <div class="d-flex align-items-center justify-content-between border border-start-0 border-top-0 border-end-0 border-secondary">
+                            <div class="text-left">
+                                <p class="fs-4 fw-bold text-dark"> {{ obj.package_type }} </p>
+                            </div>
+                            <div class="d-flex align-items-center justify-content-end">
+                                <p><button class="btn btn-outline-primary show_details" onclick="show_detail({{ obj.pk }})">Show Details</button></p>
+                            </div>
+                        </div>
+                        <div class="info-box" style="width: 95%; margin: auto; margin-top: 20px;">
+                            <div class="w-100 row">
+                                <div class="left-side col-md">
+                                    <div class="d-flex align-items-center justify-content-between justify-content-md-start mb-2">
+                                        <div class="fs-5 fw-bold text-dark me-3">Agreement Start Date: </div>
+                                        <div class="text-secondary fw-bold">{{ obj.agreement_start_date }}</div>
+                                    </div>
+                                    
+                                    <div class="d-flex align-items-center justify-content-between justify-content-md-start mb-2">
+                                        <div class="fs-5 fw-bold text-dark me-3">Agreement Duration: </div>
+                                        <div class="text-secondary fw-bold">{{ obj.agreement_duration }}</div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between justify-content-md-start mb-2">
+                                        <div class="fs-5 fw-bold text-dark me-3">Monthly Rent Amount: </div>
+                                        <div class="text-secondary fw-bold">₹ {{obj.monthly_rent_amount}}</div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between justify-content-md-start mb-2">
+                                        <div class="fs-5 fw-bold text-dark me-3">Tenant: </div>
+                                        <div class="text-secondary fw-bold">{{obj.tenant_first_name}} {{obj.tenant_middle_name}} {{obj.tenant_last_name}}</div>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between justify-content-md-start mb-2">
+                                        <div class="fs-5 fw-bold text-dark me-3">Landlord: </div>
+                                        <div class="text-secondary fw-bold">{{obj.landlord_first_name}} {{obj.landlord_middle_name}} {{obj.landlord_last_name}}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="text-secondary fw-bold">
+                                            <p class="fs-5 fw-bold text-dark me-3 d-inline">Property: </p>{{ obj.property_house_number }}, {{ obj.property_building_number}}, {{ obj.property_locality }}, {{ obj.property_road_street }}, {{ obj.property_district }}-{{ obj.property_pincode }}
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="fs-5 fw-bold text-dark me-3">Estimated Amount: </div>
+                                        <div class="text-secondary fw-bold">₹ {{ obj.total_amount }}</div>
+                                    </div>
+
+                                    <div class="d-flex align-items-center mb-2">
+                                        <div class="text-secondary fw-bold">
+                                            <p class="fs-5 fw-bold text-dark me-2 d-inline">Payment Status: </p>
+                                            {{ obj.payment_status | capfirst }}
+                                            {% comment %} {% if obj.payment_status == "unpaid" %}
+                                                <a class="text-decoration-none px-2 py-1 rounded btn-outline-danger border border-danger" href="#">Pay</a>
+                                            {% endif %} <br>
+                                            <small class="d-block d-md-inline">(You should make payment for further processing of your agreement.)</small> {% endcomment %}
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="status-bar">
+                            <ul id="progressbar">
+                                {% if obj.status == "Submitted" %}
+                                <li class="activeStep" id="step1">
+                                    <strong>Submitted</strong>
+                                </li>
+                                <li id="step2">
+
+                                    <strong>Processing</strong>
+                                </li>
+                                <li id="step3">
+
+                                    <strong>Registered</strong>
+                                </li>
+                                <li id="step4">
+                                    <strong>Expired</strong>
+                                </li>
+                                {% endif %}
+
+                                {% if obj.status == "Processing" %}
+                                <li class="activeStep" id="step1">
+
+                                    <strong>Submitted</strong>
+                                </li>
+                                <li class="activeStep" id="step2">
+                                    
+                                    <strong>Processing</strong>
+                                </li>
+                                <li id="step3">
+                                    
+                                    <strong>Registered</strong>
+                                </li>
+                                <li id="step4">
+                                    <strong>Expired</strong>
+                                </li>
+                                {% endif %}
+
+                                {% if obj.status == "Registered" %}
+                                <li class="activeStep" id="step1">
+                                    <span></span>
+                                    <strong>Submitted</strong>
+                                </li>
+                                <li class="activeStep" id="step2">
+                                    
+                                    <strong>Processing</strong>
+                                </li>
+                                <li class="activeStep" id="step3">
+                                    
+                                    <strong>Registered</strong>
+                                </li>
+                                <li id="step4">
+                                    <strong>Expired</strong>
+                                </li>
+                                {% endif %}
+
+                                {% if obj.status == "Expired" %}
+                                <li class="expired" id="step1">
+                                    <strong>Submitted</strong>
+                                </li>
+                                <li class="expired" id="step2">
+                                    
+                                    <strong>Processing</strong>
+                                </li>
+                                <li class="expired" id="step3">
+                                    
+                                    <strong>Registered</strong>
+                                </li>
+                                <li class="expired" id="step4">
+                                    <strong>Expired</strong>
+                                </li>
+                                {% endif %}
+                                
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="no-booking-container">
+                <img src="https://assets.nobroker.in/nb-new/public/Common/noData.svg" alt="icon" width="200px" height="200px">
+                <div class="text">
+                    <p>No Bookings Found</p>
+                    <p>Looks like you don't have any bookings here but you can request for  service now!</p>
+                </div><br>
+                {% if user.is_authenticated  %}
+                <div>
+                    <a href="{% url 'price' %}">Book Now</a>
+                </div>
+                {% else %}
+                <div>
+                    <form action="{% provider_login_url 'google' %}?next=/price" method="post">
+                        {% csrf_token %}
+                        <button type="submit">Book Now</button>
+                    </form>
+                </div>
+                {% endif %}
+            </div>
+        {% endif %}
+        </div>
+        
+        
+    </div>
+
+
+
+    <div id="detail-box" class="w-100 m-auto bg-white pt-3 px-3 rounded-3 hidden " style="max-width: 1000px;">
+        <div class="text-end mb-3">
+            <!-- <p class="fs-4">Agreement Details</p> -->
+            <span class="close-detail">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x-circle" viewBox="0 0 16 16">
+                    <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                </svg>
+            </span>
+        </div>
+        <div class="w-100 m-auto" style="max-width: 850px;">
+           
+            <table class="table table-hover mb-5">
+                <thead class=" bg-dark text-white">
+                  <tr>
+                    <th class="py-3 px-3 fs-4 fw-light" colspan="2">Agreement Details</th>
+                  </tr>
+                </thead>
+                <tbody id="agreement-table">
+                  
+                </tbody>
+            </table>
+
+            <table class="table table-hover mb-5">
+                <thead class=" bg-dark text-white">
+                  <tr>
+                    <th class="py-3 px-3 fs-4 fw-light" colspan="2">Property Details</th>
+                  </tr>
+                </thead>
+                <tbody id="property-table">
+                  
+                </tbody>
+            </table>
+
+            <table class="table table-hover mb-5">
+                <thead class=" bg-dark text-white">
+                  <tr>
+                    <th class="py-3 px-3 fs-4 fw-light" colspan="2">Landlord Details</th>
+                  </tr>
+                </thead>
+                <tbody id="landlord-table">
+                  
+                </tbody>
+            </table>
+
+            <table class="table table-hover mb-5">
+                <thead class=" bg-dark text-white">
+                  <tr>
+                    <th class="py-3 px-3 fs-4 fw-light" colspan="2">Tenant Details</th>
+                  </tr>
+                </thead>
+                <tbody  id="tenant-table">
+                  
+                </tbody>
+              </table>
+        </div>
+    </div>
+</div>
+
+
+<div id="spinner" class="d-none flex-column align-items-center justify-content-center" style="position: fixed; top: 0%; width: 100%; height: 100vh;">
+    <div style="background-color: rgba(128, 128, 128, 0.486); text-align: center; padding: 1rem; border-radius: 10px;">
+        <div class="spinner-border text-dark" style="width: 2rem; height: 2rem; color: rgb(0, 0, 0);" role="status">
+            {% comment %} <span class="sr-only">Processing...</span> {% endcomment %}
+          </div><br>
+          <strong style="color: black; font-size: 1.1rem; font-weight: bold; text-align: center; width: 100%;">Processing.....</strong>
+    </div>
+</div>
+
+
+<script>
+
+    const username = document.getElementById("username");
+
+    function show_detail(agreement_id){
+        // console.log(agreement_id);
+        document.querySelector("#detail-box").classList.remove("hidden");
+        document.querySelector("#hook-container").classList.add("hidden");
+        window.scrollTo(0, 0);
+
+        $("#agreement-table").empty();
+        $("#property-table").empty();
+        $("#landlord-table").empty();
+        $("#tenant-table").empty();
+        
+        $("#spinner").removeClass("d-none");
+        $("#spinner").addClass("d-flex");
+
+        const url = "/fetch_data/"+agreement_id+"/"
+        $.get(url, (data, status)=>{
+            // console.log(status);
+            if(status=="success"){
+                // console.log(data[0].fields)
+                data = data[0].fields
+                let agreement_data = new Map();
+                let property_data = new Map();
+                let tenant_data = new Map();
+                let landlord_data = new Map();
+
+                for(let key in data){
+                    if(key.includes("property")){
+                        let value = data[key];
+                        key = key.replace("property_", "").replaceAll("_", " ");
+                        property_data.set(key, value);
+                    }
+                    else if(key.includes("tenant")){
+                        let value = data[key];
+                        key = key.replace("tenant_", "").replaceAll("_", " ")
+                        tenant_data.set(key, value);
+                    }
+                    else if(key.includes("landlord")){
+                        let value = data[key];
+                        key = key.replace("landlord_", "").replaceAll("_", " ")
+                        landlord_data.set(key, value);
+                    }
+                    else{
+                        let value = data[key];
+                        key = key.replaceAll("_", " ")
+                        agreement_data.set(key, value);
+                    }
+                }
+
+
+                agreement_data.forEach((key, value)=>{
+                    let child = `<tr>
+                        <td width="60%" class="px-2 px-md-5 fw-bold" style="text-transform: capitalize;">${value}</td>
+                        <td >${key}</td>
+                    </tr>`
+                    $("#agreement-table").append(child);
+                })
+
+                property_data.forEach((key, value)=>{
+                    let child = `<tr>
+                        <td width="60%" class="px-2 px-md-5 fw-bold" style="text-transform: capitalize;">${value}</td>
+                        <td >${key}</td>
+                    </tr>`
+                    $("#property-table").append(child);
+                })
+
+                landlord_data.forEach((key, value)=>{
+                    let child = `<tr>
+                        <td width="60%" class="px-2 px-md-5 fw-bold" style="text-transform: capitalize;">${value}</td>
+                        <td >${key}</td>
+                    </tr>`
+                    $("#landlord-table").append(child);
+                })
+
+                tenant_data.forEach((key, value)=>{
+                    let child = `<tr>
+                        <td width="60%" class="px-2 px-md-5 fw-bold" style="text-transform: capitalize;">${value}</td>
+                        <td >${key}</td>
+                    </tr>`
+                    $("#tenant-table").append(child);
+                })
+
+                $("#spinner").addClass("d-none");
+                $("#spinner").removeClass("d-flex");
+                
+            }
+        })
+
+    }
+
+    const close_detail = document.querySelector(".close-detail").addEventListener("click", ()=>{
+        document.querySelector("#detail-box").classList.add("hidden");
+        document.querySelector("#hook-container").classList.remove("hidden");
+    })
+</script>
+{% endblock content %}
+
+
+
+
+
+
+
+

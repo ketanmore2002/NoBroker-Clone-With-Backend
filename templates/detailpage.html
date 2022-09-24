@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Page</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap" rel="stylesheet"> 
+</head>
+<style>
+    *{
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+    }
+    .container{
+        width: 100%;
+        min-height: 100vh;
+        height: fit-content;
+        background-color: rgb(223, 248, 248);
+        padding: 3rem 10px;
+        font-family: 'Poppins', sans-serif;
+    }
+    .detail-box{
+        max-width: 850px;
+        margin: auto;
+        background-color: white;
+        border-radius: 10px;
+        padding: 1rem;
+        /* box-shadow: 0 0 5px 3px; */
+    }
+    .detail-box .header{
+        border-bottom: 2px solid grey;
+        padding: 8px 5px;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .detail-box .header p{
+        font-size: 1.8rem;
+    }
+    .infobox{
+        width: 98%;
+        margin: auto;
+    }
+    .infobox table{
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .infobox table tr{
+        border-bottom: 2px solid red;
+    }
+    .infobox table thead tr td{
+        background-color: rgb(67, 67, 252);
+        padding: 0.8rem;
+        font-size: 1.3rem;
+        color: white;
+    }
+    .infobox table tbody tr{
+        width: 50%;
+        border: 2px solid red;
+    }
+    .table_row td{
+        width: 50%;
+        padding: 0.8rem;
+        border-bottom: 1px solid grey;
+    }
+    .table_row td:first-child{
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+    .table_row td:last-child{
+        font-size: 1rem;
+        color: rgb(57, 56, 56);
+    }
+    .close-btn{
+        cursor: pointer;
+    }
+</style>
+<body>
+    <div class="container">
+        <div class="detail-box">
+            <div class="header">
+                <p>Agreement Details</p>
+                <div class="close-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="red" class="bi bi-x-circle" viewBox="0 0 16 16">
+                        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+                        <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
+                      </svg>
+                </div>
+            </div>
+            <div class="infobox">
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan="2">Agreement Details</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan="2">Contract Details</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td colspan="2">Tenant Details</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                        <tr class="table_row">
+                            <td>Key</td>
+                            <td>Value</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

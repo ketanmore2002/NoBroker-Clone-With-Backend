@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Status</title>
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+<style>
+    *{
+        margin: 0%;
+        padding: 0%;
+        box-sizing: border-box;
+    }
+    .main-container{
+        width: 100%;
+        height: 100vh;
+        background-color: rgb(233, 239, 243);
+        display: grid;
+        place-content: center;
+        padding: 2rem;
+        font-family: 'Nunito', sans-serif;
+    }
+    .container{
+        max-width: 1000px;
+        width: 900px;
+        padding: 3rem 0;
+        border-radius: 10px;
+        box-shadow: 0 0 8px 5px rgb(190, 190, 190);
+        background-color: white;
+
+    }
+    .container div{
+        text-align: center;
+        margin-bottom: 1rem;
+        width: 85%;
+        margin: auto;
+        margin-bottom: 1.5rem;
+    }
+
+    .container div:nth-child(3){
+        margin-bottom: 2rem;
+    }
+    .container div button{
+        padding: 0.7rem 1rem;
+        margin: 0 0.4rem;
+        background-color: white;
+        border: 1px solid grey;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+        font-size: 1.01rem;
+        font-family: 'Nunito', sans-serif;
+    }
+    .container div button:hover{
+        background-color: whitesmoke;
+    }
+    .container div .color-red{
+        border: none;
+        background-color: rgb(254, 54, 54);
+        color: white;
+    }
+    .container div .color-red:hover{
+        background-color: rgb(184, 9, 9);
+    }
+</style>
+<body>
+    <div class="main-container">
+        <div class="container">
+            <div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="red" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                    <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                </svg>
+            </div>
+            <div>
+                <h1>Payment Fail</h1>
+            </div>
+            <div>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rerum beatae eaque voluptate veniam laborum exercitationem fuga. Inventore adipisci incidunt qui!
+            </div>
+            <div>
+                <button>Go Back</button>
+                <!-- <button class="color-red">Go Back</button> -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

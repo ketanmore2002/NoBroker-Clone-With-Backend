@@ -1,0 +1,229 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- CSS Link -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    margin: 0%;
+    padding: 0%;
+    box-sizing: border-box;
+}
+
+.center{
+    text-align: center;
+}
+
+.main-container{
+    padding: 4rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.main-container table{
+    width: 100%;
+}
+.main-container table thead td{
+    font-weight: bold;
+}
+.main-container table, td{
+    
+    border: 2px solid black;
+    border-collapse: collapse;
+}
+
+.main-container table td{
+    padding: 5px;
+}
+
+.main-container h2, h3{
+    text-align: center;
+}
+
+.main-container span{
+    font-weight: bold;
+}
+.main-container h4{
+    display: inline;
+}
+
+.main-container ul{
+    margin-left: 2rem;
+    list-style: none;
+}
+
+.main-container p, li{
+    color: rgb(67, 67, 67);
+}
+
+.main-container .content-box{
+    width: 150px;
+    height: 200px;
+    border: 1px solid grey;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-container table:last-child tr td{
+    padding: 1rem;
+}
+</style>
+</head>
+<body>
+    <div class="main-container">
+        <table>
+            <thead>
+                <td width="20%">Particulars</td>
+                <td width="15%">Amount Paid</td>
+                <td width="25%">GRN No.</td>
+                <td width="15%">Date</td>
+                <td width="25%">Deface No.</td>
+            </thead>
+            <tr>
+                <td>Stamp Duty</td>
+                <td>Rs. </td>
+                <td>_</td>
+                <td>_</td>
+                <td>_</td>
+            </tr>
+            <tr>
+                <td>Registration Fee</td>
+                <td>Rs.</td>
+                <td>_</td>
+                <td>_</td>
+                <td>_</td>
+            </tr>
+        </table>
+
+        <h2>LEAVE AND LICENSE AGREEMENT</h2>
+        <p class="center">This agreement is made and executed on <span>{{agreement_duration}}</span> at Pune</p>
+        <p class="center">Between,</p>
+        <p>HEREINAFTER called 'the Licensor' (which expression shall mean and include the Licensor above named as also his respective heirs, successors, assigns, executors and administrators)</p>
+        <p>HEREINAFTER called 'the Licensee' (which expression shall mean and include only Licensee above named).</p>
+        <p>WHEREAS the Licensor is absolutely seized and possessed of and or otherwise well and sufficiently entitled to all that constructed portion being unit described in Schedule hereunder written and are hereafter for the sake of brevity called or referred to as Licensed Premises and is/are desirous of giving the said premises on Leave and License basis under Section 24 of the Maharashtra Rent Control Act, 1999.</p>
+
+        <p>AND WHEREAS the Licensee herein is in need of temporary premises for his <span> _______________ </span> use has/have approached the Licensor with a request to allow the Licensee herein to use and occupy the said premises on Leave and License basis for a period of <span>{{agreement_duration}}</span> Months commencing from <span> {{ agreement_start_date }} </span> and ending on<span> _______________ </span>, on terms and subject to conditions hereafter appearing. AND WHEREAS the Licensor have agreed to allow the Licensee herein to use and occupy the said Licensed premises for his aforesaid purposes only, on Leave and License basis for above mentioned period, on terms and subject to conditions hereafter appearing;</p>
+
+
+        <p>NOW THEREFORE IT IS HEREBY AGREED TO, DECLARED AND RECORDED BY AND BETWEEN THE PARTIES HERETO AS FOLLOWS:</p>
+        <ul>
+            <li>
+                <h4> Period:</h4> That the Licensor hereby grants to the Licensee herein a revocable leave and license, to occupy the Licensed Premises, described in Schedule hereunder written without creating any tenancy rights or any other rights, title and interest in favour of the Licensee for a period of <span>{{ agreement_duration }}</span> Months commencing from <span>{{agreement_duration}}</span> and ending on<span> _______________ </span>
+            </li>
+            <li>
+                <h4> Licensee Fee & Deposit: </h4>That the Licensee shall pay to the Licensor <span> {{ monthly_rent_amount }} </span> Per month towards the compensationThe amount of monthly compensation shall be payable within first five days of the concerned month of Leave and License.Licensee shall also pay to the Licensor Rs. <span> {{ refundable_deposit_amount }} </span> interest free refundable deposit, for the use of the said licensed premises.
+            </li>
+            <li>
+                <h4> Payment of Deposit: _______________</h4>
+            </li>
+
+            <li>
+               <h4> Maintenance Charges:</h4> That the all outgoings including all rates, taxes, levies, assessment, maintenance charges, non occupancy charges, etc. in respect of the said premises shall be paid by the Licensor.
+            </li>
+
+            <li>
+                <h4>Electricity Charges: </h4>The Licensee herein shall pay the electricity bills directly for energy consumed on the licensed premises and should submit original receipts to Licensor indicating that the electricity bills are paid.
+            </li>
+
+            <li>
+                <h4>Usage, Damages and Repairs: </h4>That the Licensed premises shall only be used by the Licensee for <span> _______________ </span>  purpose. The Licensee shall maintain the said premises in its existing condition and damage, if any, caused to the said premises, the same shall be repaired by the Licensee at its own cost subject to normal wear and tear. The Licensee shall not do anything in the said premises which is or is likely to cause a nuisance to the other occupants of the said building or to the prejudice in any manner to The rights of Licensor in respect of said premises or shall not do any unlawful activities prohibited By State or Central Government.
+            </li>
+            <li>
+                <h4>Alteration:</h4> That the Licensee shall not make or permit to do any alteration or addition to the construction or arrangements (internal or external) to the Licensed premises without previous consent in writing from the Licensor.
+            </li>
+            <li>
+                <h4>No Tenancy: </h4>That the Licensee shall not claim any tenancy right and shall not have any right to transfer, assign, and sublet or grant any license or sub-license in respect of the Licensed Premises or any part thereof and also shall not mortgage or raise any loan against the said premises.
+            </li>
+            <li>
+                <h4>Inspection:</h4> That, the Licensor shall on reasonable notice given by the Licensor to the Licensee shall have a right of access either by himself or through authorized representative to enter, view and inspect the Licensed premises at reasonable intervals.
+            </li>
+            <li>
+                <h4>Lock in period:</h4> Both the parties have agreed to set a lock-in period of <span> _______________ </span> months during which neither the Licensor shall ask the Licensee to vacate the premises, nor the Licensee shall vacate the premises on his own during the lock-in period.In spite of this mandatory clause, if the Licensee leaves the premises for whatsoever reason, he shall pay to the Licensor license fee for the remaining lock-in period at the rate of agreed upon in the agreement. On the other hand, Licensor shall compensate the Licensee for loss and inconvenience caused to the Licensee if he has been asked to vacate the premises.
+            </li>
+            <li>
+                <h4>Cancellation:</h4> That, if the Licensee commits default in regular and punctual payments of monthly compensation as herein before mentioned or commit/s breach of any of the terms, covenants and conditions of this agreement or if any legislation prohibiting the Leave and License is imposed, the Licensor shall be entitled to revoke and / or cancel the License hereby granted, by giving notice in writing of one month and the Licensee too will have the right to vacate the said premises by giving a notice in writing of one month to the Licensor as mentioned earlier
+            </li>
+            <li>
+                <h4>Possession: </h4>That the immediately at on the expiration or termination or cancellation of this agreement the Licensee shall vacate the said premises without delay with all his goods and belongings. In the event of the Licensee failing and / or neglecting to remove himself and / or his articles from the said premises on expiry or sooner determination of this Agreement, the Licensor shall be entitled to recover damages at the rate of double the daily amount of compensation per day and or alternatively the Licensor shall be entitled to remove theLicensee and his belongings from the Licensed premises, without recourse to the Court of Law.
+            </li>
+            <li>
+                <h4>Furniture and Appliances: </h4>The said premises is having the Furniture and Appliances mentioned in the Schedule II. The Licensee shall maintain the said Furniture and Appliances in the said premises in its existing condition and damage, if any, caused to the said Furniture and Appliances, the same shall be repaired by the Licensee/s at its own cost subject to normal wear and tear
+            </li>
+            <li>
+                <h4>Registration: </h4>This Agreement is to be registered and the expenditure of Stamp duty and registration fees and incidental charges, if any, shall be borne by the both Licensor and licensee .
+            </li>
+        </ul>
+        <h3>SCHEDULE I:</h3>
+        <p>
+            (Being the correct description of Flat which is the subject matter of these presents) All that constructed portion being residential unit bearing <span> _______________ </span>, Built-up (Area):<span> _______________ </span>, situated on the <span> _______________ </span>Floor of a Building known as <span> _______________ </span> standing on the plot <span> _______________ </span> of land bearing <span> _______________ </span>,<span> _______________ </span>of Village: <span> <span> _______________ </span></span>, situated within the revenue limits of Tehsil <span> _______________ </span> and Dist <span> _______________ </span> and situated within the limits of <span> _______________ </span>Municipal Corporation.
+        </p>
+        <h3>Schedule II</h3>
+        <p class="center">
+            (Being the correct description of premise Apartment/Flat which is the subject matter of these presents)
+        </p>
+        <table>
+            <thead>
+                <td width="20%">Sr No.</td>
+                <td width="20%">Item</td>
+                <td width="60%">Number of Units</td>
+            </thead>
+        </table>
+        <p>
+            IN WITNESS WHEREOF the parties hereto have set and subscribed their respective signatures by way of putting thumb impression electronic signature hereto in the presence of witness, who are identifying the executants, on the day, month and year first above written.
+        </p>
+        <table>
+            <thead>
+                <td>Name and Address</td>
+                <td>Photo</td>
+                <td>Thumb Impression</td>
+                <td>Digitally Signed</td>
+            </thead>
+            <tr>
+                <td>
+                    <p>Witness of execution</p>
+                    <p>Name: <span>__________________</span></p>
+                    <p><span>_________________________</span></p>
+                    <p>UID: <span>____________________</span></p>
+                    <p>Address: <span>________________</span></p>
+                    <p><span>_________________________</span></p>
+                </td>
+                <td>
+                    <p class="content-box"> Photo</p>
+                </td>
+                <td>
+                    <p class="content-box"> Thumb</p>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>Witness of execution</p>
+                    <p>Name: <span>__________________</span></p>
+                    <p><span>_________________________</span></p>
+                    <p>UID: <span>____________________</span></p>
+                    <p>Address: <span>________________</span></p>
+                    <p><span>_________________________</span></p>
+                </td>
+                <td>
+                    <p class="content-box"> Photo</p>
+                </td>
+                <td>
+                    <p class="content-box"> Thumb</p>
+                </td>
+                <td>
+                    
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

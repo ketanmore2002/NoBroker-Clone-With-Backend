@@ -1,0 +1,1245 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Admin Panel</title>
+
+    <!-- Custom fonts for this template-->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="{% static 'css/sb-admin-2.min.css' %}" rel="stylesheet">
+    <link href="{% static 'vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+
+        <!-- Sidebar -->
+        <ul class="d-none d-sm-block navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+            <!-- Sidebar - Brand -->
+            <a href="" class="sidebar-brand d-flex align-items-center">
+                <div class="sidebar-brand-text">Tenantly</div>
+            </a>
+
+            <!-- Divider -->
+            <hr class="sidebar-divider my-0 mb-2">
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item my-1 active">
+                <a class="nav-link link-1" style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-grid-fill" viewBox="0 0 16 16">
+                        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z"/>
+                    </svg>
+                    <span class="mt-1">Dashboard</span></a>
+            </li>
+
+            <!-- Nav Item - Cuopon -->
+            <li class="nav-item my-1">
+                <a class="nav-link link-5" style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-cash-stack" viewBox="0 0 16 16">
+                        <path d="M1 3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1H1zm7 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/>
+                        <path d="M0 5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V5zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V7a2 2 0 0 1-2-2H3z"/>
+                      </svg>
+                    <span class="mt-1">Coupons</span></a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item my-1">
+                <a class="nav-link link-2" style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-earmark-excel-fill" viewBox="0 0 16 16">
+                        <path d="M9.293 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.707A1 1 0 0 0 13.707 4L10 .293A1 1 0 0 0 9.293 0zM9.5 3.5v-2l3 3h-2a1 1 0 0 1-1-1zM5.884 6.68 8 9.219l2.116-2.54a.5.5 0 1 1 .768.641L8.651 10l2.233 2.68a.5.5 0 0 1-.768.64L8 10.781l-2.116 2.54a.5.5 0 0 1-.768-.641L7.349 10 5.116 7.32a.5.5 0 1 1 .768-.64z"/>
+                    </svg>
+                    <span class="mt-1">Unpaid Agreements</span></a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item my-1">
+                <a class="nav-link link-3" style="cursor: pointer;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-file-text-fill" viewBox="0 0 16 16">
+                        <path d="M12 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM5 4h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm-.5 2.5A.5.5 0 0 1 5 6h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1-.5-.5zM5 8h6a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1zm0 2h3a.5.5 0 0 1 0 1H5a.5.5 0 0 1 0-1z"/>
+                      </svg>
+                    <span class="mt-1">Dynamic Pages</span></a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item my-1">
+                <a class="nav-link link-4" style="cursor: pointer;" href="/getfile">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-filetype-csv" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M14 4.5V14a2 2 0 0 1-2 2h-1v-1h1a1 1 0 0 0 1-1V4.5h-2A1.5 1.5 0 0 1 9.5 3V1H4a1 1 0 0 0-1 1v9H2V2a2 2 0 0 1 2-2h5.5L14 4.5ZM3.517 14.841a1.13 1.13 0 0 0 .401.823c.13.108.289.192.478.252.19.061.411.091.665.091.338 0 .624-.053.859-.158.236-.105.416-.252.539-.44.125-.189.187-.408.187-.656 0-.224-.045-.41-.134-.56a1.001 1.001 0 0 0-.375-.357 2.027 2.027 0 0 0-.566-.21l-.621-.144a.97.97 0 0 1-.404-.176.37.37 0 0 1-.144-.299c0-.156.062-.284.185-.384.125-.101.296-.152.512-.152.143 0 .266.023.37.068a.624.624 0 0 1 .246.181.56.56 0 0 1 .12.258h.75a1.092 1.092 0 0 0-.2-.566 1.21 1.21 0 0 0-.5-.41 1.813 1.813 0 0 0-.78-.152c-.293 0-.551.05-.776.15-.225.099-.4.24-.527.421-.127.182-.19.395-.19.639 0 .201.04.376.122.524.082.149.2.27.352.367.152.095.332.167.539.213l.618.144c.207.049.361.113.463.193a.387.387 0 0 1 .152.326.505.505 0 0 1-.085.29.559.559 0 0 1-.255.193c-.111.047-.249.07-.413.07-.117 0-.223-.013-.32-.04a.838.838 0 0 1-.248-.115.578.578 0 0 1-.255-.384h-.765ZM.806 13.693c0-.248.034-.46.102-.633a.868.868 0 0 1 .302-.399.814.814 0 0 1 .475-.137c.15 0 .283.032.398.097a.7.7 0 0 1 .272.26.85.85 0 0 1 .12.381h.765v-.072a1.33 1.33 0 0 0-.466-.964 1.441 1.441 0 0 0-.489-.272 1.838 1.838 0 0 0-.606-.097c-.356 0-.66.074-.911.223-.25.148-.44.359-.572.632-.13.274-.196.6-.196.979v.498c0 .379.064.704.193.976.131.271.322.48.572.626.25.145.554.217.914.217.293 0 .554-.055.785-.164.23-.11.414-.26.55-.454a1.27 1.27 0 0 0 .226-.674v-.076h-.764a.799.799 0 0 1-.118.363.7.7 0 0 1-.272.25.874.874 0 0 1-.401.087.845.845 0 0 1-.478-.132.833.833 0 0 1-.299-.392 1.699 1.699 0 0 1-.102-.627v-.495Zm8.239 2.238h-.953l-1.338-3.999h.917l.896 3.138h.038l.888-3.138h.879l-1.327 4Z"/>
+                      </svg>
+                    <span class="mt-1">Export Data</span></a>
+            </li>
+
+
+
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block mt-2">
+
+        
+        </ul>
+       
+
+        
+
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column position-relative">
+            <!-- Main Content -->
+            <div id="content" style="position: relative;">
+                <!-- Topbar -->
+                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow d-flex align-items-center justify-content-between">
+                    <!-- Sidebar Toggle (Topbar) -->
+                    <button id="sidebarToggleMenu" class=" border-0 bg-white d-sm-none mr-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="black" class="bi bi-list" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                    </button>
+
+
+                    <!-- Topbar Navbar -->
+                    <ul class="navbar-nav ml-auto">
+                        <!-- Nav Item - User Information -->
+                        <li class="nav-item dropdown no-arrow">
+                            <!-- <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ request.user.username }}</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                                </svg>
+                            </a> -->
+                            <a href="/logout">
+                                <button class="btn btn-primary">
+                                    Log Out
+                                </button>
+                            </a>
+                            
+                        </li>
+
+                    </ul>
+
+                </nav>
+                <!-- End of Topbar -->
+                
+                <!-- Begin Page Content -->
+                <div class="page container-fluid main">
+                    <!-- Page Heading -->
+                    <!-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Agreement Statistics</h1>
+                    </div> -->
+                    
+                    <div class="my-3 shadow bg-gray-200 px-2 py-3 rounded-lg d-lg-flex align-items-center justify-content-between d-block">
+                        <div class="w-lg-50 w-100 p-lg-3 p-1">
+                            <h5 class="fw-bold text-dark">Important Note</h5>
+                            <ul>
+                                <li class="mb-2">Merchant Key - This is a unique secret key used for secure encryption of every request. This needs to be kept on server-side and should not be shared with anyone.</li>
+                                <li class="mb-2">Merchant ID (MID) - This is the 20 digits alphanumerical unique identifier of your Paytm for business Account</li>
+                                <li class="mb-2">Only one Merchant-Key or Merchant-ID can be set.</li>
+                                <li class="mb-2">If you change the previous Merchant-Key and Merchant-ID to the new, the previous one will not be stored.</li>
+                                <li class="mb-2">Merchant-Key and Merchant-ID shown in the fields are current Key and ID.</li>
+                                
+                            </ul>
+                        </div>
+                        <div id="merchant-info-form" class=" mt-lg-0 mt-2 w-lg-50 w-100 p-lg-3 p-1">
+                            <div id="merchant-form" class="w-100">
+                                <input id="merchant_form_csrftoken" type="hidden" value="{{ csrf_token }}">
+                                <div class="w-100 mb-4">
+                                    <label class="text-dark" for="merchantKey">Merchant Key</label><br>
+                                    <input id="merchantKey" type="text" class="form-control bg-light border-0 font-weight-bold p-4" value="{{ merchant_key }}">
+                                </div>
+                                <div class="w-100 mb-4">
+                                    <label class="text-dark" for="merchantID">Merchant ID</label><br>
+                                    <input id="merchantID" type="text" class="form-control bg-light border-0 font-weight-bold p-4" value="{{ merchant_id }}">
+                                </div>
+                                <div class="input-group w-100 mt-4">
+                                    <button id="merchant_form_submit" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm rounded p-2 px-4 font-weight-bold">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="my-5">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4 ">
+                            <div class="card-header py-3 d-flex align-items-center justify-content-between">
+                                <h4 class="text-left m-0 font-weight-bold text-primary">Agreements List</h4>
+                                <button id="createAgreement" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm rounded p-2 px-4 font-weight-bold">Create Agreement</button>
+                            </div>
+                            
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr class="bg-gray-100">
+                                                <th class="text-dark" width="5%">Order ID</th>
+                                                <th class="text-dark">Name</th>
+                                                <th class="text-dark" width="12%">Start Date</th>
+                                                <th class="text-dark" width="15%">Agreement Status</th>
+                                                <th class="text-dark" width="10%">Amount</th>
+                                                <th class="text-dark" width="15%">Payment Status</th>
+                                                <th class="text-dark" width="10%">Details</th>
+                                                <th class="text-dark" width="10%">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <!-- <tfoot>
+                                            <tr>
+                                                <th>Order ID</th>
+                                                <th>Name</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                                <th>Amount</th>
+                                                <th>Details</th>
+                                            </tr>
+                                        </tfoot> -->
+                                        <tbody id="agreement-table">
+                                            {% for element in paidAgreements %}
+                                            <tr>
+                                                <td>{{element.pk}}</td>
+                                                <td>{{element.first_name}} {{element.last_name}}</td>
+                                                <td>{{element.agreement_start_date}}</td>
+                                                <td>{{element.status}}</td>
+                                                <td>{{element.total_amount}}</td>
+                                                <td>{{element.payment_status}}</td>
+                                                <td class="page-detail text-primary" style="cursor:pointer;" onclick="detail_page_info({{element.pk}})">Details</td>
+                                                <td class="page-detail text-danger" style="cursor:pointer;" onclick="delete_agreement(this, {{element.pk}})">Delete</td>
+                                            </tr>
+                                            
+                                            {% endfor %}
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+                <div class="page d-none container-fluid main">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800 mb-3">Coupon Statistics</h1>
+                        <button id="create-coupon" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm rounded p-2 font-weight-bold">Create Coupons</button>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div id="coupon-page-form" class="bg-gray-200 rounded-lg d-none">
+                        <div class="w-100 bg-gray-200 p-5 rounded-lg d-none d-flex align-items-center justify-content-center justify-content-lg-between">
+                            <form id="coupon-form" class="w-100 mr-xl-5" style="max-width: 600px;">
+                                <p class="mb-3 border-bottom" style="font-size: 1.8rem; font-weight: bold;color: rgb(9, 58, 131); border-bottom: 2px solid grey;">Create Custom Coupons</p>
+                                <input id="csrftoken_coupon" type="hidden" value="{{ csrf_token }}">
+                                <div class="input-group w-100 mb-4">
+                                    <input id="couponName" type="text" class="form-control bg-light border-0 font-weight-bold p-4"
+                                        placeholder="Coupon Name....." aria-label="Search"
+                                        aria-describedby="basic-addon2">
+                                </div>
+                                <div class="input-group w-100 mb-4">
+                                    <input id="couponCode" type="text" class="form-control bg-light border-0 font-weight-bold p-4"
+                                        placeholder="Coupon Code...." aria-label="Search"
+                                        aria-describedby="basic-addon2">
+                                </div>
+                                <div class="input-group w-100 mb-4">
+                                    <input id="couponAmount" type="text" class="form-control bg-light border-0 font-weight-bold p-4"
+                                        placeholder="Coupon Amount....." aria-label="Search"
+                                        aria-describedby="basic-addon2">
+                                </div>
+                                <div class="w-100 mt-4 d-flex align-items-center justify-content-end">
+                                    <button id="submit" class="w-100 btn btn-sm btn-primary shadow-sm rounded py-2 font-weight-bold">Submit</button>
+                                </div>
+                            </form>
+                            <div class="d-none d-xl-block" style="width: 35%; text-align: right; vertical-align: middle;">
+                                <img style="border-radius: 20px; width: 100%;" src="https://img.freepik.com/free-vector/purchasing-habits-abstract-concept_335657-2995.jpg?w=740&t=st=1663178627~exp=1663179227~hmac=2883decf5888046c12672f042b6cfa1cd837b38c610e8d1ab2b08dcc1b35a3db" alt="coupon">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="my-5">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4 ">
+                            <div class="card-header py-3">
+                                <h4 class="text-left m-0 font-weight-bold text-primary">Coupons List</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr class="bg-gray-100">
+                                                {% comment %} <th class="text-dark" width="10%">Coupon ID</th> {% endcomment %}
+                                                <th class="text-dark">Coupon Name</th>
+                                                <th class="text-dark" width="20%">Coupon Code</th>
+                                                <th class="text-dark" width="20%">Amount</th>
+                                                <th class="text-dark" width="20%">Action</th>
+                                                {% comment %} <th class="text-dark text-center" width="20%" colspan="2">Status</th> {% endcomment %}
+                                            </tr>
+                                        </thead>
+                                        <tbody id="coupon-table">
+                                            <tr>
+                                                <td>Diwali Dhamaka</td>
+                                                <td>DIWALI50</td>
+                                                <td>200</td>
+                                                <td><a style="text-decoration: none; color: red;" href="#">Delete</a></td>
+                                            </tr>
+                                            
+                                            
+                                            
+
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+
+                </div>
+
+
+                <div class="page d-none container-fluid main">
+                    <div class="my-5">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4 ">
+                            <div class="card-header py-3">
+                                <h4 class="text-left m-0 font-weight-bold text-primary">Unpaid Agreements List</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr class="bg-gray-100">
+                                                <th class="text-dark" width="10%">Order ID</th>
+                                                <th class="text-dark">Name</th>
+                                                <th class="text-dark" width="18%">Date</th>
+                                                <th class="text-dark" width="20%">Status</th>
+                                                <th class="text-dark" width="12%">Amount</th>
+                                                <th class="text-dark" width="10%">Details</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="unpaidAgreement-table">
+                                            
+                                            {% for data in  unpaidAgreements%}
+                                            
+                                            <tr>
+                                                <td>{{data.pk}}</td>
+                                                <td>{{data.first_name}} {{data.last_name}}</td>
+                                                <td>{{data.agreement_start_date}}</td>
+                                                <td>{{data.status}}</td>
+                                                <td>{{data.total_amount}}</td>
+                                                <td><p class="page-detail text-primary" style="cursor:pointer;" onclick=detail_page_info({{data.pk}})>Details</p></td>
+                                            </tr>
+                                            
+                                            {% endfor %}
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.container-fluid -->
+
+                <!-- Begin Page Content -->
+                <div class="page d-none container-fluid main">
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800 mb-3">Dynamic Pages Statistics</h1>
+                        <button id="create-dynamic-pages" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm rounded p-2 font-weight-bold">Create Dynamic Pages</button>
+                    </div>
+
+                    <!-- Content Row -->
+                    <div id="dynamic-page-form" class="bg-gray-200 p-5 rounded-lg d-none">
+                        <form id="dynamic-form">
+                            <input id="csrftoken" type="hidden" value="{{ csrf_token }}">
+                            <div class="input-group w-100 mb-4">
+                                <input id="pageTitle" type="text" class="form-control bg-light border-0 font-weight-bold p-4"
+                                    placeholder="Give Your Page Title.........." aria-label="Search"
+                                    aria-describedby="basic-addon2">
+                            </div>
+                            <div class="input-group w-100 mb-4">
+                                <input id="pageURL" type="text" class="form-control bg-light border-0 font-weight-bold p-4"
+                                    placeholder="Give Your Page URL......" aria-label="Search"
+                                    aria-describedby="basic-addon2">
+                            </div>
+                            <div class="input-group w-100">
+                                <textarea class="form-control bg-light border-0 font-weight-bold p-3 no-resize" name="desc" id="desc" rows="15" placeholder="Page content here....."></textarea>
+                            </div>
+                            <div class="input-group w-100 mt-4">
+                                <button id="submit" class="d-sm-inline-block btn btn-sm btn-primary shadow-sm rounded p-2 px-4 font-weight-bold">Submit</button>
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="my-5">
+                        <!-- DataTales Example -->
+                        <div class="card shadow mb-4 ">
+                            <div class="card-header py-3">
+                                <h4 class="text-left m-0 font-weight-bold text-primary">Dynamic Pages List</h4>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                        <thead>
+                                            <tr class="bg-gray-100">
+                                                <th class="text-dark" width="10%">Page ID</th>
+                                                <th class="text-dark">Page Title</th>
+                                                <th class="text-dark" width="20%">Page URL</th>
+                                                <th class="text-dark text-center" width="20%" colspan="2">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="dynamic-table">
+                                            
+                                            
+                                            
+                                            
+
+                                            
+                                            
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+
+                </div>
+                <!-- /.container-fluid -->
+            
+                <!-- Page Wrapper -->
+                <div class="page detail-page d-none w-100 m-auto" id="wrapper" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+                    
+            
+                    <!-- Content Wrapper -->
+                    <div id="content-wrapper" class="d-flex flex-column">
+                        
+                        
+                        <!-- Main Content -->
+                        <div id="content">
+            
+            
+                            <!-- Begin Page Content -->
+                            <div class="container-fluid bg-white py-5 w-100 sm- mx-auto position-relative" style="max-width: 950px;">
+                                <div id="close-detail-page" class="position-absolute" style="top: 30px; right: 20px; cursor: pointer;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-x-circle-fill" viewBox="0 0 16 16">
+                                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+                                      </svg>
+                                </div>
+            
+                                <div class=" py-1 border-bottom">
+                                    <h3 style="color: black;">Agreement Details Page</h3>
+                                </div>
+
+                                <div class="w-100 my-5 px-2">
+                                    <div class="w-100 d-lg-flex align-items-center justify-content-lg-between mb-2" >
+                                        <div class="d-flex align-items-center px-2 mb-2 w-100">
+                                            <p class="mr-3" style="font-size: 1.3rem; color: black;">User Name: </p>
+                                            <p id="detailUsername" style="font-size: 1.2rem;"></p>
+                                        </div>
+                                        <div class="d-flex align-items-center px-2 mb-2 w-100">
+                                            <p class="mr-3" style="font-size: 1.3rem; color: black;">User Type: </p>
+                                            <p id="detailUsertype" style="font-size: 1.2rem;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-lg-flex align-items-center mb-2" >
+                                        <div class="d-flex align-items-center px-2 mb-2 w-100">
+                                            <p class="mr-3" style="font-size: 1.3rem; color: black;">Agreement Type: </p>
+                                            <p id="detailType" style="font-size: 1.2rem;"></p>
+                                        </div>
+                                        <div class="d-flex align-items-center px-2 mb-2 w-100">
+                                            <p class="mr-3" style="font-size: 1.3rem; color: black;">Agreement Start Date: </p>
+                                            <p id="detailDate" style="font-size: 1.2rem;"></p>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-lg-flex align-items-center mb-2">
+                                        <div class="d-flex align-items-center px-2 mb-2 w-100">
+                                            <p class="mr-3" style="font-size: 1.3rem; color: black;">Agreement Duration: </p>
+                                            <p  id="detailDuration" style="font-size: 1.2rem;"></p>
+                                        </div>
+                                        <div class="d-flex align-items-center px-2 mb-2 w-100">
+                                            <p class="mr-4" style="font-size: 1.4rem; color: black;">Agreement Status: </p>
+                                            <div class="d-flex align-items-center">
+                                                <!-- <p style="font-size: 1.2rem; margin-right: 5px;">Submitted</p> -->
+                                                <input type="hidden" name="agree_id" id="hidden_id">
+                                                <input type="hidden" name="csrf_token" id="staus_csrf_token" value="{{ csrf_token }}">
+                                                <select  style="width: 160px; padding: 8px 12px; font-size: 1.2rem; border: 1px solid grey; outline: none; border-radius: 5px; background-color: white; color: black;" name="agreement_status" id="detailStatus" onchange="changeStatus()">
+                                                    <!-- <option value="Submitted">Submitted</option>
+                                                    <option value="Processing">Processing</option>
+                                                    <option value="Registered">Registered</option>
+                                                    <option value="Expired">Expired</option> -->
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="w-100 d-lg-flex align-items-center mb-2" >
+                                        <div class="d-flex align-items-center px-2 mb-2 w-100">
+                                            <p class="mr-3" style="font-size: 1.3rem; color: black;">Contact Number: </p>
+                                            <p id="contactNumber" style="font-size: 1.2rem;"></p>
+                                        </div>
+                                        <div class="d-flex align-items-center px-2 mb-2 w-100">
+                                            <p class="mr-3" style="font-size: 1.3rem; color: black;">Payment Status: </p>
+                                            <p  id="detailPayment" style="font-size: 1.2rem;"></p>
+                                        </div>
+                                    </div>
+
+                                </div>
+            
+                                <div class="card-body">
+                                    <div class="table-responsive">
+                                        <table class="table" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="2" class="bg-gray-200 text-center rounded border-0" style="font-size: 1.4rem; padding: 12px 10px; color: black;">General Details</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="detailagreement_table">
+                                                
+                                                
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="2" class="bg-gray-200 text-center rounded border-0" style="font-size: 1.4rem; padding: 12px 10px; color: black;">Property Details</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="detailproperty_table">
+                                                
+                                                
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+
+
+
+                                        <table class="table" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="2" class="bg-gray-200 text-center rounded border-0" style="font-size: 1.4rem; padding: 12px 10px; color: black;">Landlord Details</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="detaillandlord_table">
+                                                
+                                                
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+
+                                        <table class="table" id="dataTable" width="100%" cellspacing="0">
+                                            <thead>
+                                                <tr>
+                                                    <td colspan="2" class="bg-gray-200 text-center rounded border-0" style="font-size: 1.4rem; padding: 12px 10px; color: black;">Tenant Details</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="detailtenant_table">
+                                                
+                                                
+                                                
+                                                
+                                            </tbody>
+                                        </table>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /.container-fluid -->
+            
+                        </div>
+                        <!-- End of Main Content -->
+            
+            
+                    </div>
+                    <!-- End of Content Wrapper -->
+            
+                </div>
+
+
+                <div id="createAgreementForm" class="page createAgreementForm d-none container-fluid main py-2 py-md-4 bg-white">
+                    <form id="agreementCreationForm" action="{% url 'admin_add_agreement' %}" method="post">
+                        {% csrf_token %}
+                        <input type="hidden" name="user_name" value="{{ request.user.username }}">
+                        <input type="hidden" name="user_id" value="{{ request.user.id }}">
+                        <input type="hidden" name="first_name" value="{{ request.user.first_name }}">
+                        <input type="hidden" name="last_name" value="{{ request.user.last_name }}">
+                        <input type="hidden" name="payment_status" value="paid">;
+
+                        <div class="d-flex align-items-center justify-content-between" style="background-color: white; text-align: end;">
+                            <button type="button" id="closeAgreementForm" class="d-sm-inline-block border-0 bg-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                                  </svg>
+                            </button>
+                            <button type="submit" id="createAgreement1" class="d-sm-inline-block btn btn-sm btn-danger shadow-sm rounded p-2 px-4 font-weight-bold">Save Agreement</button>
+                        </div>
+                        <div class="flex-grow-1 px-1 px-md-2 pt-3">
+                            <div class="w-100 mb-5 p-4 p-md-5 bg-gray-200">
+                                <h3>Generate Estimate</h3><br>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="agreement-duration">Agreement Duration</label><br>
+                                            <select  id="agreement-duration" name="agreement_duration" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;" >
+                                                <option style="color: black;" value=1>1 Month</option>
+                                                <option value=2>2 Month</option>
+                                                <option value=3>3 Month</option>
+                                                <option value=4>4 Month</option>
+                                                <option value=5>5 Month</option>
+                                                <option value=6>6 Month</option>
+                                                <option value=7>7 Month</option>
+                                                <option value=8>8 Month</option>
+                                                <option value=9>9 Month</option>
+                                                <option value=10>10 Month</option>
+                                                <option value=11>11 Month</option>
+                                                <option value=12>12 Month</option>
+                                                <option value=18>18 Month</option>
+                                                <option value=24>24 Month</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="agreement-start-date">Agreement Start Date</label><br>
+                                            <input type="date" name="agreement_start_date" id="agreement-start-date" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="monthly-rent-amount">Monthly Rent Amount</label>
+                                            <input type="text" id="monthly-rent-amount" name="monthly_rent_amount" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="refundable-deposit-amount">Refundable Deposit Amount</label>
+                                            <input type="text" id="refundable-deposit-amount" name="refundable_deposit_amount" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="non-refundable-deposit">Non Refundable Amount</label>
+                                            <input type="text" id="non-refundable-deposit" name="non_refundable_amount" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="contact_number">Contact Number</label>
+                                            <input type="text" id="contact_number" name="contact_number" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="user_type">User Type</label><br>
+                                            <select  id="user_type" name="user_type" class="w-100 bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <!-- <option disabled>Select the duration of agreement</option> -->
+                                                <option value="Tenant">Tenant</option>
+                                                <option value="Landlord">Landlord</option>
+                                                
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="total_amount">Total Amount</label>
+                                            <input type="text" id="total_amount" name="total_amount" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-100 mb-5 p-5 bg-gray-200">
+                                <h3>Property Details</h3><br>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="property-type">Type of Property</label>
+                                            <select id="property-type" name="property_type" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Apartment / Flat">Apartment / Flat</option>
+                                                <option value="Shop">Shop</option>
+                                                <option value="Office">Office</option>
+                                                <option value="Godown">Godown</option>
+                                                <option value="Independent House">Independent House</option>
+                                                <option value="Land+Building/Shed">Land+Building/Shed</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="house-number">House Number</label>
+                                            <input type="text" id="house-number" name="property_house_number" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="building-name">Building Name</label>
+                                            <input type="text" id="building-name" name="property_building_name" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="locality">Locality</label>
+                                            <input type="text" id="locality" name="property_locality" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <div class="input-div required">
+                                                <label for="bedrooms">Number of Bedrooms</label>
+                                            </div>
+                                            <div class="input-div">
+                                                <input type="number" id="bedrooms" name="property_bedrooms" min="0" class="form-control bg-light border-0 font-weight-bold p-4">
+                                            </div>
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <div class="input-div required">
+                                                <label for="bathrooms">Number of Bathrooms</label>
+                                            </div>
+                                            <div class="input-div">
+                                                <input type="number" id="bathrooms" name="property_bathrooms" min="0" pattern="[0-9]+" class="form-control bg-light border-0 font-weight-bold p-4">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="road-street">Road / Street</label>
+                                            <input type="text" id="road-street" name="property_road_street" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="pincode">Pin Code</label>
+                                            <input type="text" id="pincode" name="property_pincode" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="district">District</label>
+                                            <input type="text" id="district" name="property_district" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="propertyNumberType">Property Number Type</label>
+                                            <select id="propertyNumberType" name="property_number_type" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="House Number">House Number</option>
+                                                <option value="GAT Number">GAT Number</option>
+                                                <option value="Survey Number">Survey Number</option>
+                                                <option value="Final Plot Number">Final Plot Number</option>
+                                                <option value="Plot Number">Plot Number</option>
+                                                <option value="Sector Number">Sector Number</option>
+                                                <option value="C.T.S. Number">C.T.S. Number</option>
+                                                <option value="HISSA NUmber">HISSA NUmber</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="property-number">Property Number</label>
+                                            <input type="text" id="property-number" name="property_number" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="flat-area">Flat / House Built-up Area</label>
+                                            <input type="text" id="flat-area" name="property_bluiltup_area" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="area-unit">Built-up Area Unit</label>
+                                            <select id="area-unit" name="property_bluiltup_area_unit" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Square Feet">Square Feet</option>
+                                                <option value="Hectare">Hectare</option>
+                                                <option value="Square Meter">Square Meter</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="property_use">Property Use</label>
+                                            <select id="property_use" name="property_use" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Square Feet">Residential</option>
+                                                <option value="Hectare">Non-Residential</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="gallary-area">Gallary Area</label>
+                                            <input type="text" id="gallary-area" name="property_gallary_area" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="gallary-area-unit">Gallary Area Unit</label>
+                                            <select id="gallary-area-unit" name="property_gallary_area_unit" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Square Feet">Square Feet</option>
+                                                <option value="Hectare">Hectare</option>
+                                                <option value="Square Meter">Square Meter</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="parking-area">Parking Area</label>
+                                            <input type="text" id="parking-area" name="property_parking_area" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="parking-area-unit">Parking Area Unit</label>
+                                            <select id="parking-area-unit" name="property_parking_area_unit" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Square Feet">Square Feet</option>
+                                                <option value="Hectare">Hectare</option>
+                                                <option value="Square Meter">Square Meter</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4"></div>
+                                        <div class="w-100 mb-4"></div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-100 mb-5 p-5 bg-gray-200">
+                                <h3>Landlord Details</h3><br>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-party-entity-type">Party Entity Type</label>
+                                            <select id="landlord-party-entity-type" name="landlord_party_entity_type" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Individual">Individual</option>
+                                                <option value="Limited Company">Limited Company</option>
+                                                <option value="State Government Department">State Government Department</option>
+                                                <option value="Central Government Department">Central Government Department</option>
+                                                <option value="Joint Venture">Joint Venture</option>
+                                                <option value="Public Limited Company">Public Limited Company</option>
+                                                <option value="Private Limited Company">Private Limited Company</option>
+                                                <option value="Society Limited">Society Limited</option>
+                                                <option value="Cooperative Society">Cooperative Society</option>
+                                                <option value="Central Government Undertaking">Central Government Undertaking</option>
+                                                <option value="Proprietorship">Proprietorship</option>
+                                                <option value="HUF">HUF</option>
+                                                <option value="Limited Liability Partnership">Limited Liability Partnership</option>
+                                                <option value="Partnership">Partnership</option>
+                                                <option value="Trust">Trust</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-party-type">Party Type</label>
+                                            <select id="landlord-party-type" name="landlord_party_type" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Owner">Owner</option>
+                                                <option value="Power of attorny Holder">Power of attorny Holder</option>
+                                                <option value="Witness">Witness</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-middleName">Middle Name</label>
+                                            <input type="text" id="landlord-middleName" name="landlord_middle_name" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-lastName">Last Name</label>
+                                            <input type="text" id="landlord-lastName" name="landlord_last_name" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-age">Age</label>
+                                            <input type="number" id="landlord-age" name="landlord_age" min="18" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-gender">Gender</label>
+                                            <select id="landlord_gender" name="landlord_gender" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-occupation">Occupation</label>
+                                            <input type="text" id="landlord-occupation" name="landlord_occupation" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-phone">Phone Number</label>
+                                            <input type="text" id="landlord-phone" name="landlord_phone_number" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-aadhar">Aadhar Number (12 digit)</label>
+                                            <input type="text" id="landlord-aadhar" name="landlord_aadhar_number" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-pan">PAN Number (ABCDE1234F)</label>
+                                            <input type="text" id="landlord-pan" name="landlord_pan_number" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-email">Email</label>
+                                            <input type="text" id="landlord_email" name="landlord_email" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-buildingName">Building Name</label>
+                                            <input type="text" id="landlord-buildingName" name="landlord_building_name" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="w-100 d-none d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-flatNumber">Flat Number / House Number</label>
+                                            <input type="text" id="landlord-flatNumber" name="landlord_flat_house_number" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-floornumber">Floor Number</label>
+                                            <input type="text" id="landlord-floornumber" name="landlord_floor_number" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-street">Road / Street</label>
+                                            <input type="text" id="landlord-street" name="landlord_road_street" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-pincode">PIN Code</label>
+                                            <input type="text" id="landlord-pincode" name="landlord_pincode" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-city">Village / City</label>
+                                            <input type="text" id="landlord-city" name="landlord_city" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-district">District</label>
+                                            <input type="text" id="landlord-district" name="landlord_district" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-state">State</label>
+                                            <input type="text" id="landlord-state" name="landlord_state" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="landlord-execution-through">Executing Through</label>
+                                            <select id="landlord-execution-through" name="landlord_executing_through" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="POA">POA</option>
+                                                <option value="Self">Self</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-100 mb-5 p-5 bg-gray-200">
+                                <h3>Tenant Details</h3><br>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-party-entity-type">Party Entity Type</label>
+                                            <select id="tenant-party-entity-type" name="tenant_party_entity_type" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Individual">Individual</option>
+                                                <option value="Limited Company">Limited Company</option>
+                                                <option value="State Government Department">State Government Department</option>
+                                                <option value="Central Government Department">Central Government Department</option>
+                                                <option value="Joint Venture">Joint Venture</option>
+                                                <option value="Public Limited Company">Public Limited Company</option>
+                                                <option value="Private Limited Company">Private Limited Company</option>
+                                                <option value="Society Limited">Society Limited</option>
+                                                <option value="Cooperative Society">Cooperative Society</option>
+                                                <option value="Central Government Undertaking">Central Government Undertaking</option>
+                                                <option value="Proprietorship">Proprietorship</option>
+                                                <option value="HUF">HUF</option>
+                                                <option value="Limited Liability Partnership">Limited Liability Partnership</option>
+                                                <option value="Partnership">Partnership</option>
+                                                <option value="Trust">Trust</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-party-type">Party Type</label>
+                                            <select id="tenant-party-type" name="tenant_party_type" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Owner">Owner</option>
+                                                <option value="Power of attorny Holder">Power of attorny Holder</option>
+                                                <option value="Witness">Witness</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-middleName">Middle Name</label>
+                                            <input type="text" id="tenant-middleName" name="tenant_middle_name" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-lastName">Last Name</label>
+                                            <input type="text" id="tenant-lastName" name="tenant_last_name" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-age">Age</label>
+                                            <input type="number" id="tenant-age" name="tenant_age" min="18" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-gender">Gender</label>
+                                            <select id="tenant_gender" name="tenant_gender" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Other">Other</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-occupation">Occupation</label>
+                                            <input type="text" id="tenant-occupation" name="tenant_occupation" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-phone">Phone Number</label>
+                                            <input type="text" id="tenant-phone" name="tenant_phone_number" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-aadhar">Aadhar Number (12 digit)</label>
+                                            <input type="text" id="tenant-aadhar" name="tenant_aadhar_number" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-pan">PAN Number (ABCDE1234F)</label>
+                                            <input type="text" id="tenant-pan" name="tenant_pan_number" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-email">Email</label>
+                                            <input type="text" id="tenant_email" name="tenant_email" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-buildingName">Building Name</label>
+                                            <input type="text" id="tenant-buildingName" name="tenant_building_name" class="form-control bg-light border-0 font-weight-bold p-4" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-flatNumber">Flat Number / House Number</label>
+                                            <input type="text" id="tenant-flatNumber" name="tenant_flat_house_number" class="w-100 btn-outline-none bg-light border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-floornumber">Floor Number</label>
+                                            <input type="text" id="tenant-floornumber" name="tenant_floor_number" class="w-100 btn-outline-none bg-light border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;" />
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-street">Road / Street</label>
+                                            <input type="text" id="tenant-street" name="tenant_road_street" class="w-100 btn-outline-none bg-light border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-pincode">PIN Code</label>
+                                            <input type="text" id="tenant-pincode" name="tenant_pincode" class="w-100 btn-outline-none bg-light border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-city">Village / City</label>
+                                            <input type="text" id="tenant-city" name="tenant_city" class="w-100 btn-outline-none bg-light border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;" />
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-district">District</label>
+                                            <input type="text" id="tenant-district" name="tenant_district" class="w-100 btn-outline-none bg-light border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;" />
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-state">State</label>
+                                            <input type="text" id="tenant-state" name="tenant_state" class="w-100 btn-outline-none bg-light border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;" />
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="tenant-execution-through">Executing Through</label>
+                                            <select id="tenant-execution-through" name="tenant_executing_through" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="POA">POA</option>
+                                                <option value="Self">Self</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+                            <div class="w-100 mb-5 p-5 bg-gray-200">
+                                <h3>Contract Details</h3><br>
+                                <div class="w-100 d-block d-xl-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="maintainance-paid-by">Maintainance Paid By</label>
+                                            <select id="maintainance-paid-by" name="maintaiance_paid_by" class="w-100 btn-outline-none bg-light border-0 font-weight-bold rounded rounded-3 text-secondary" style="padding: 12px 16px; outline: none;">
+                                                <option value="Tenant">Tenant</option>
+                                                <option value="Landlord">Landlord</option>
+                                            </select>
+                                        </div>
+                                        <div class="w-100 mb-4">
+                                            <label for="minimum-lockin-period">Minimum Lockin Period (In Months)</label>
+                                            <input type="number" id="minimum-lockin-period" min="1" max="12" name="minimum_lockin_period" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+                                    </div>
+                                    <div class="w-100 d-block d-lg-flex align-items-center justify-content-between" style="gap: 1rem;">
+                                        <div class="w-100 mb-4">
+                                            <label for="notice-period">Notice Period (In Months)</label>
+                                            <input type="number"id="notice-period" min="0" max="3" name="notice_period" class="form-control bg-light border-0 font-weight-bold p-4">
+                                        </div>
+        
+                                        <div class="w-100 mb-4">
+                                            <label for="reg-fee-paid-by">Stamp Duty & Registration Fee Paid By</label>
+                                            <select id="reg-fee-paid-by" name="stamp_and_registration_fee_paid_by" class="w-100 btn-outline-none bg-light text-secondary border-0 font-weight-bold rounded rounded-3" style="padding: 12px 16px; outline: none;">
+                                                <option value="Licensor">Licensor</option>
+                                                <option value="Licensee">Licensee</option>
+                                                <option value="Both">Both</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="w-100 d-flex align-items-center justify-content-between" style="gap: 2rem;">
+                                    <div class="w-100 mb-4">
+                                        <label for="miscellaneous">Miscellaneous (If any other Terms & Conditions) (Maximum 1000 characters)</label>
+                                        <textarea name="miscellaneous" id="miscellaneous" rows="8" style="width: 100%; resize: none; padding: 1rem; border: none; outline: none; border-radius: 10px;"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-5" style="background-color: white;">
+                            <button type="submit" id="createAgreement2" class="createAgreement d-sm-inline-block btn btn-sm btn-danger shadow-sm rounded p-2 px-4 font-weight-bold">Save Agreement</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End of Main Content -->
+        </div>
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-arrow-up-short" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 12a.5.5 0 0 0 .5-.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 .5.5z"/>
+        </svg>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="{% url 'logout' %}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Alerts -->
+    <div id="alert_success" class="alert alert-success w-100 text-center position-fixed d-none mx-auto" style="top: 30px; max-width: 400px; left: 50%; transform: translate(-50%, 0)" role="alert">
+        This is a success alert—check it out!
+    </div>
+    <div id="alert_danger" class="alert alert-danger w-100 text-center position-fixed d-none mx-auto" style="top: 30px; max-width: 400px" role="alert">
+    This is a danger alert—check it out!
+    </div>
+
+
+
+    <div id="spinner" class="d-none flex-column align-items-center justify-content-center" style="position: fixed; top: 0%; width: 100%; height: 100vh;">
+        <div style="background-color: rgba(128, 128, 128, 0.486); text-align: center; padding: 1rem; border-radius: 10px;">
+            <div class="spinner-border text-dark" style="width: 2rem; height: 2rem; color: rgb(0, 0, 0);" role="status">
+                <span class="sr-only">Processing...</span>
+              </div><br>
+              <strong style="color: black; font-size: 1.1rem; font-weight: bold; text-align: center; width: 100%;">Processing.....</strong>
+        </div>
+    </div>
+
+
+    
+
+
+
+
+    
+
+<!-- ---------------------------------------------------------------------------------------------------------------- -->
+    <script src="{% static 'adminpanel.js' %}"></script>
+    <!-- Bootstrap core JavaScript-->
+    <!-- <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script> -->
+
+    <!-- Core plugin JavaScript-->
+    <!-- <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script> -->
+
+    <!-- Custom scripts for all pages-->
+    <script src="{% static 'js/sb-admin-2.min.js' %}"></script>
+
+    <!-- Page level plugins -->
+    <!-- <script src="{% static 'vendor/datatables/jquery.dataTables.min.js' %}"></script> -->
+    <!-- <script src="{% static 'vendor/datatables/dataTables.bootstrap4.min.js' %}"></script> -->
+
+    <!-- Page level custom scripts -->
+    <!-- <script src="{% static 'js/demo/datatables-demo.js' %}"></script> -->
+    
+
+</body>
+
+</html>

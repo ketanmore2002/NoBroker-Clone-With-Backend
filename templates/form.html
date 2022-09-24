@@ -1,0 +1,1140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenantly.com</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/printThis/1.15.0/printThis.min.js"></script>
+
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script> -->
+    
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <form id="agreement_form" method="post" action="{% url 'add_agreement' %}" class="form-div form">
+                {% csrf_token %}
+                <div class="left-side">
+                    <div class="left-heading">
+                        {% comment %} <div>
+                            <a href="#">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+                                </svg>
+                            </a>
+                        </div> {% endcomment %}
+                        <div style="width: 100%; display: flex; align-items: center; justify-content: space-between;">
+                            <p style="font-size: 1.8rem;">Tenantly</p>
+                            <div id="mobileProgressBarViewer" class="hidden">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="white" class="bi bi-list-task" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5H2zM3 3H2v1h1V3z"/>
+                                    <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9zm0 4a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1h-9z"/>
+                                    <path fill-rule="evenodd" d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5V7zM2 7h1v1H2V7zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5H2zm1 .5H2v1h1v-1z"/>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="steps-content">
+                        <h2>Step <span class="step-number">1</span> of 6</h2>
+                    </div>
+                    <ul class="progress-bar">
+                        <!-- <li class="form-step active first-step">Select Package</li> -->
+                        <li class="form-step active first-step">Generate Estimate</li>
+                        <li class="form-step">Property Details</li>
+                        <li class="form-step">Landlord Details</li>
+                        <li class="form-step">Tenant Details</li>
+                        <li class="form-step">Contract Details</li>
+                        <li class="form-step last-step">Payment</li>
+                    </ul>
+                </div>
+
+
+                
+                <div class="right-side" style="position: relative;">
+                    <a href="/" style="text-decoration: none; position: absolute; top: 2%; right: 5%; display: flex; align-items: center; padding: 5px; background-color: white; box-shadow: 0 0 8px 2px grey; border-radius: 5px; cursor: pointer;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="grey" class="bi bi-x-lg" viewBox="0 0 16 16">
+                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                        </svg>
+                    </a>
+                    <div class="formContainer">
+                        {% comment %} <div class="main active">
+                            <div class="text">
+                                <h2>Select Your Package</h2>
+                                <p>Select the type of agreement according to your needs.</p>
+                            </div>
+
+                            <div class="special-container">
+                                <div class="form-check input-div ">
+                                    <input class="form-check-input hidden" type="radio" name="package-type" id="package-1" value="Rental Agreement">
+                                    <label class="form-check-label" for="package-1">
+                                        <h2>Selected Package</h2>
+                                        <div class="special-radio-btn package-1">
+                                            <h3>Rental Agreement</h3>
+                                            <ul>
+                                                <li class="small">
+                                                    No need to visit any govt. Office or an advocate!
+                                                </li>
+                                                <li class="small">
+                                                    Get an appointment slot even on weekends!
+                                                </li>
+                                                <li class="small">
+                                                    Lowest prices guaranteed, sitting at your home!
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-check input-div">
+                                    <input class="form-check-input hidden" type="radio" name="package-type" id="package-2" value="Rent Agreement + Police Intimidation">
+                                    <label class="form-check-label" for="package-2">
+                                        <div class="special-radio-btn package-2">
+                                            <h3>Rent Agreement + Police Intimidation</h3>
+                                            <ul>
+                                                <li class="small">
+                                                  No need to visit any govt. Office or an advocate!
+                                                </li>
+                                                <li class="small">
+                                                  Get an appointment slot even on weekends!
+                                                </li>
+                                                <li class="small">
+                                                  Lowest prices guaranteed, sitting at your home!
+                                                </li>
+                                              </ul>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+
+                        <div class="main active">
+                            <div class="text">
+                                <h2>Generate Estimate</h2>
+                                <p>Give us the primary information to generate the estimated amount.</p>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <input type="hidden" name="user_name" value="{{ request.user.username }}">
+                                    <input type="hidden" name="user_id" value="{{ request.user.id }}">
+                                    <input type="hidden" name="first_name" value="{{ request.user.first_name }}">
+                                    <input type="hidden" name="last_name" value="{{ request.user.last_name }}">
+                                    <input type="hidden" name="coupan" id="coupon">
+                                    <input type="hidden" name="total_amount" id="total_amount">
+
+
+
+                                    <label for="agreement-duration">Agreement Duration</label>
+                                    <select class="form-select" id="agreement-duration" name="agreement_duration" aria-label="Default select example" required require>
+                                        <!-- <option disabled>Select the duration of agreement</option> -->
+                                        <option value=1>1 Month</option>
+                                        <option value=2>2 Month</option>
+                                        <option value=3>3 Month</option>
+                                        <option value=4>4 Month</option>
+                                        <option value=5>5 Month</option>
+                                        <option value=6>6 Month</option>
+                                        <option value=7>7 Month</option>
+                                        <option value=8>8 Month</option>
+                                        <option value=9>9 Month</option>
+                                        <option value=10>10 Month</option>
+                                        <option value=11>11 Month</option>
+                                        <option value=12>12 Month</option>
+                                        <option value=18>18 Month</option>
+                                        <option value=24>24 Month</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div flex required">
+                                    <label for="agreement-start-date">Agreement Start Date</label><br>
+                                    <input type="date" name="agreement_start_date" id="agreement-start-date" required require>
+                                </div>
+                            </div>
+                            
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="monthly-rent-amount">Monthly Rent Amount</label>
+                                    <input type="text" id="monthly-rent-amount" name="monthly_rent_amount" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="refundable-deposit-amount">Refundable Deposit Amount</label>
+                                    <input type="text" id="refundable-deposit-amount" name="refundable_deposit_amount" required require>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="non-refundable-deposit">Non Refundable Amount</label>
+                                    <input type="text" id="non-refundable-deposit" name="non_refundable_amount">
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="contact_number">Contact Number</label>
+                                    <input type="text" id="contact_number" name="contact_number" required require>
+                                </div>
+                            </div>
+                            
+                            
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    
+                                    <div class="flex">
+                                        <p>I am: </p>
+                                        <div>
+                                            <input class="form-check-input hidden" type="radio" name="user_type" id="tenant-type" value="Tenant" required require>
+                                            <label class="form-check-label" for="tenant-type">
+                                                <div class="special-radio-btn tenant-type">
+                                                    Tenant
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div>
+                                            <input class="form-check-input hidden" type="radio" name="user_type" id="owner-type" value="Owner">
+                                            <label class="form-check-label" for="owner-type">
+                                                <div class="special-radio-btn owner-type">
+                                                    Owner
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                        </div>
+
+                        <div class="main">
+                            <div class="text">
+                                <h2>Property Details</h2>
+                                <p>Enter the property details.</p>
+                            </div>
+                            <div class="input-text ">
+                                <div class="input-div required">
+                                    <label for="property-type">Type of Property</label>
+                                    <select class="form-select" id="property-type" name="property_type" aria-label="Default select example" required require>
+                                        <option value="Apartment / Flat">Apartment / Flat</option>
+                                        <option value="Shop">Shop</option>
+                                        <option value="Office">Office</option>
+                                        <option value="Godown">Godown</option>
+                                        <option value="Independent House">Independent House</option>
+                                        <option value="Land+Building/Shed">Land+Building/Shed</option>
+                                    </select>
+                                </div>
+                                <div class="input-div required"> 
+                                    <label for="house-number">House Number</label>
+                                    <input type="text" id="house-number" name="property_house_number" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="building-name">Building Name</label>
+                                    <input type="text" id="building-name" name="property_building_name" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="locality">Locality</label>
+                                    <input type="text" id="locality" name="property_locality" required require>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="bedrooms">Number of Bedrooms</label>
+                                </div>
+                                <div class="input-div">
+                                    <input type="number" id="bedrooms" name="property_bedrooms" min="0" required require>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="bathrooms">Number of Bathrooms</label>
+                                </div>
+                                <div class="input-div">
+                                    <input type="number" id="bathrooms" name="property_bathrooms" min="0" pattern="[0-9]+" required require>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="road-street">Road / Street</label>
+                                    <input type="text" id="road-street" name="property_road_street" required require>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="pincode">Pin Code</label>
+                                    <input type="text" id="pincode" name="property_pincode" required require>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="district">District</label>
+                                    <input type="text" id="district" name="property_district" required require>
+                                </div>
+                                <div class="input-div required">
+                                    <label for="propertyNumberType">Property Number Type</label>
+                                    <select class="form-select" id="propertyNumberType" name="property_number_type" aria-label="Default select example" required require>
+                                        <option value="House Number">House Number</option>
+                                        <option value="GAT Number">GAT Number</option>
+                                        <option value="Survey Number">Survey Number</option>
+                                        <option value="Final Plot Number">Final Plot Number</option>
+                                        <option value="Plot Number">Plot Number</option>
+                                        <option value="Sector Number">Sector Number</option>
+                                        <option value="C.T.S. Number">C.T.S. Number</option>
+                                        <option value="HISSA NUmber">HISSA NUmber</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="property-number">Property Number</label>
+                                    <input type="text" id="property-number" name="property_number" required require>
+                                </div>
+                                <div class="input-div required">
+                                    <label for="flat-area">Flat / House Built-up Area</label>
+                                    <input type="text" id="flat-area" name="property_bluiltup_area" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="area-unit">Built-up Area Unit</label>
+                                    <select class="form-select" id="area-unit" name="property_bluiltup_area_unit" aria-label="Default select example" required require>
+                                        <option value="Square Feet">Square Feet</option>
+                                        <option value="Hectare">Hectare</option>
+                                        <option value="Square Meter">Square Meter</option>
+                                    </select>
+                                </div>
+                                <div class="input-div">
+                                    
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="form-check required">
+                                    <p>Use</p>
+                                    <input class="form-check-input" type="radio" name="property_use" id="residential" value="Residential" required require>
+                                    <label class="form-check-label" for="residential">
+                                        Residential
+                                    </label>
+                                    <input class="form-check-input" type="radio" name="property_use" id="nonresidential" value="Non-Residential" required require>
+                                    <label class="form-check-label" for="present-no">
+                                        Non Residential
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="gallary-area">Gallary Area</label>
+                                    <input type="text" id="gallary-area" name="property_gallary_area" required require>
+                                </div>
+                                <div class="input-div required">
+                                    <label for="gallary-area-unit">Gallary Area Unit</label>
+                                    <select class="form-select" id="gallary-area-unit" name="property_gallary_area_unit" aria-label="Default select example" required require>
+                                        <option value="Square Feet">Square Feet</option>
+                                        <option value="Hectare">Hectare</option>
+                                        <option value="Square Meter">Square Meter</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="parking-area">Parking Area</label>
+                                    <input type="text" id="parking-area" name="property_parking_area" required>
+                                </div>
+                                <div class="input-div required">
+                                    <label for="parking-area-unit">Parking Area Unit</label>
+                                    <select class="form-select" id="parking-area-unit" name="property_parking_area_unit" aria-label="Default select example" required require>
+                                        <option value="Square Feet">Square Feet</option>
+                                        <option value="Hectare">Hectare</option>
+                                        <option value="Square Meter">Square Meter</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="main">
+                            <div class="text">
+                                <h2>Landlord Details</h2>
+                                <p>Enter the Landlord Details.</p>
+                            </div>
+                            <div class="input-text required">
+                                <div class="input-div"> 
+                                    <label for="landlord-party-entity-type">Party Entity Type</label>
+                                    <select class="form-select" id="landlord-party-entity-type" name="landlord_party_entity_type" aria-label="Default select example" required require>
+                                        <option value="Individual">Individual</option>
+                                        <option value="Limited Company">Limited Company</option>
+                                        <option value="State Government Department">State Government Department</option>
+                                        <option value="Central Government Department">Central Government Department</option>
+                                        <option value="Joint Venture">Joint Venture</option>
+                                        <option value="Public Limited Company">Public Limited Company</option>
+                                        <option value="Private Limited Company">Private Limited Company</option>
+                                        <option value="Society Limited">Society Limited</option>
+                                        <option value="Cooperative Society">Cooperative Society</option>
+                                        <option value="Central Government Undertaking">Central Government Undertaking</option>
+                                        <option value="Proprietorship">Proprietorship</option>
+                                        <option value="HUF">HUF</option>
+                                        <option value="Limited Liability Partnership">Limited Liability Partnership</option>
+                                        <option value="Partnership">Partnership</option>
+                                        <option value="Trust">Trust</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-party-type">Party Type</label>
+                                    <select class="form-select" id="landlord-party-type" name="landlord_party_type" aria-label="Default select example" required require>
+                                        <option value="Owner">Owner</option>
+                                        <option value="Power of attorny Holder">Power of attorny Holder</option>
+                                        <option value="Witness">Witness</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-firstName">First Name</label>
+                                    <input type="text" id="landlord-firstName" name="landlord_first_name" placeholder="Enter First Name" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-middleName">Middle Name</label>
+                                    <input type="text" id="landlord-middleName" name="landlord_middle_name" placeholder="Enter Middle Name" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-lastName">Last Name</label>
+                                    <input type="text" id="landlord-lastName" name="landlord_last_name" placeholder="Enter Last Name" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-age">Age</label>
+                                    <input type="number" id="landlord-age" name="landlord_age" min="18" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-gender">Gender</label>
+                                    <select class="form-select" id="landlord_gender" name="landlord_gender" aria-label="Default select example" required require>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-occupation">Occupation</label>
+                                    <input type="text" id="landlord-occupation" name="landlord_occupation" placeholder="Enter Occupation" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-phone">Phone Number</label>
+                                    <input type="text" id="landlord-phone" name="landlord_phone_number" placeholder="Enter Phone Number" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-aadhar">Aadhar Number (12 digit)</label>
+                                    <input type="text" id="landlord-aadhar" name="landlord_aadhar_number" placeholder="Enter Aadhar Number" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-pan">PAN Number (ABCDE1234F)</label>
+                                    <input type="text" id="landlord-pan" name="landlord_pan_number" placeholder="Enter PAN Number" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-email">Email</label>
+                                    <input type="text" id="landlord_email" name="landlord_email" placeholder="Enter Email Address" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-buildingName">Building Name</label>
+                                    <input type="text" id="landlord-buildingName" name="landlord_building_name" placeholder="Building Name" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-flatNumber">Flat Number / House Number</label>
+                                    <input type="text" id="landlord-flatNumber" name="landlord_flat_house_number" placeholder="Flat Number / House Number" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-floornumber">Floor Number</label>
+                                    <input type="text" id="landlord-floornumber" name="landlord_floor_number" placeholder="Floor Number" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-street">Road / Street</label>
+                                    <input type="text" id="landlord-street" name="landlord_road_street" placeholder="Road / Street" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-pincode">PIN Code</label>
+                                    <input type="text" id="landlord-pincode" name="landlord_pincode" placeholder="PIN Code" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-city">Village / City</label>
+                                    <input type="text" id="landlord-city" name="landlord_city" placeholder="Village / City" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-district">District</label>
+                                    <input type="text" id="landlord-district" name="landlord_district" placeholder="District" required require />
+                                </div>
+                                <div class="input-div required"> 
+                                    <label for="landlord-state">State</label>
+                                    <input type="text" id="landlord-state" name="landlord_state" placeholder="State" required require />
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="landlord-execution-through">Executing Through</label>
+                                    <select class="form-select" id="landlord-execution-through" name="landlord_executing_through" aria-label="Default select example" required require>
+                                        <option value="POA">POA</option>
+                                        <option value="Self">Self</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="main">
+                            <div class="text">
+                                <h2>Tenant Details</h2>
+                                <p>Enter Tenant Details.</p>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant_party_entity_type">Party Entity Type</label>
+                                    <select class="form-select" id="tenant_party_entity_type" name="tenant_party_entity_type" aria-label="Default select example" required require>
+                                        <option value="Individual">Individual</option>
+                                        <option value="Limited Company">Limited Company</option>
+                                        <option value="State Government Department">State Government Department</option>
+                                        <option value="Central Government Department">Central Government Department</option>
+                                        <option value="Joint Venture">Joint Venture</option>
+                                        <option value="Public Limited Company">Public Limited Company</option>
+                                        <option value="Private Limited Company">Private Limited Company</option>
+                                        <option value="Society Limited">Society Limited</option>
+                                        <option value="Cooperative Society">Cooperative Society</option>
+                                        <option value="Central Government Undertaking">Central Government Undertaking</option>
+                                        <option value="Proprietorship">Proprietorship</option>
+                                        <option value="HUF">HUF</option>
+                                        <option value="Limited Liability Partnership">Limited Liability Partnership</option>
+                                        <option value="Partnership">Partnership</option>
+                                        <option value="Trust">Trust</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-party-type">Party Type</label>
+                                    <select class="form-select" id="tenant-party-type" name="tenant_party_type" aria-label="Default select example" required require>
+                                        <option value="Owner">Owner</option>
+                                        <option value="Witness">Witness</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-firstName">First Name</label>
+                                    <input type="text" id="tenant-firstName" name="tenant_first_name" placeholder="Enter First Name" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-middleName">Middle Name</label>
+                                    <input type="text" id="tenant-middleName" name="tenant_middle_name" placeholder="Enter Middle Name" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="tenant-lastName">Last Name</label>
+                                    <input type="text" id="tenant-lastName" name="tenant_last_name" placeholder="Enter Last Name" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-age">Age</label>
+                                    <input type="number" id="tenant-age" name="tenant_age" min="18" pattern="[0-9]+" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="tenant-gender">Gender</label>
+                                    <select class="form-select" id="tenant-gender" name="tenant_gender" aria-label="Default select example" required require>
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-occupation">Occupation</label>
+                                    <input type="text" id="tenant-occupation" name="tenant_occupation" placeholder="Enter Occupation" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-phone">Phone Number</label>
+                                    <input type="text" id="tenant-phone" name="tenant_phone_number" placeholder="Enter Phone Number" pattern="[0-9]+" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-aadhar">Aadhar Number (12 digit)</label>
+                                    <input type="text" id="tenant-aadhar" name="tenant_aadhar_number" placeholder="Enter Aadhar Number" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-pan">PAN Number (ABCDE1234F)</label>
+                                    <input type="text" id="tenant-pan" name="tenant_pan_number" placeholder="Enter PAN Number" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-email">Email</label>
+                                    <input type="text" id="tenant-email" name="tenant_email" placeholder="Enter Email Address" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-buildingName">Building Name</label>
+                                    <input type="text" id="tenant-buildingName" name="tenant_building_name" placeholder="Building Name" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required">
+                                    <label for="tenant-flatNumber">Flat Number / House Number</label>
+                                    <input type="text" id="tenant-flatNumber" name="tenant_flat_house_number" placeholder="Flat Number / House Number" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-floornumber">Floor Number</label>
+                                    <input type="text" id="tenant-floornumber" name="tenant_floor_number" placeholder="Floor Number" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-street">Road / Street</label>
+                                    <input type="text" id="tenant-street" name="tenant_road_street" placeholder="Road / Street" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-pincode">PIN Code</label>
+                                    <input type="text" id="tenant-pincode" name="tenant_pincode" placeholder="PIN Code" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-city">Village / City</label>
+                                    <input type="text" id="tenant-city" name="tenant_city" placeholder="Village / City" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-district">District</label>
+                                    <input type="text" id="tenant-district" name="tenant_district" placeholder="District" required require>
+                                </div>
+                                <div class="input-div required"> 
+                                    <label for="tenant-state">State</label>
+                                    <input type="text" id="tenant-state" name="tenant_state" placeholder="State" required require>
+                                </div>
+                            </div>
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="tenant-execution-through">Executing Through</label>
+                                    <select class="form-select" id="tenant-execution-through" name="tenant_executing_through" aria-label="Default select example" required require>
+                                        <option value="POA">POA</option>
+                                        <option value="Self">Self</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="main">
+                            <div class="text">
+                                <h2>Contract Details</h2>
+                                <p>Check the contract Details.</p>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="maintainance-paid-by">Maintainance Paid By</label>
+                                    <select class="form-select" id="maintainance-paid-by" name="maintaiance_paid_by" aria-label="Default select example" required require>
+                                        <option value="Tenant">Tenant</option>
+                                        <option value="Landlord">Landlord</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="minimum-lockin-period">Minimum Lockin Period (In Months)</label>
+                                    <input type="number" class="form-select" id="minimum-lockin-period" min="1" max="12" name="minimum_lockin_period" required require>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="notice-period">Notice Period (In Months)</label>
+                                    <input type="number"id="notice-period" min="0" max="3" name="notice_period" required require>
+                                </div>
+                            </div>
+
+                            <div class="input-text">
+                                <div class="input-div required"> 
+                                    <label for="reg-fee-paid-by">Stamp Duty & Registration Fee Paid By</label>
+                                    <select class="form-select" id="reg-fee-paid-by" name="stamp_and_registration_fee_paid_by" aria-label="Default select example" required require>
+                                        <option value="Licensor">Licensor</option>
+                                        <option value="Licensee">Licensee</option>
+                                        <option value="Both">Both</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            
+                            <div class="input-text">
+                                <div class="input-div">
+                                    <label for="miscellaneous">Miscellaneous (If any other Terms & Conditions) (Maximum 1000 characters)</label>
+                                    <textarea name="miscellaneous" id="miscellaneous" rows="8" style="width: 100%; resize: none;"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="main no-scroll last-form">
+                            <div class="summary-flex">
+                                <div class="summary-list">
+                                    <div class="summary-card heading">
+                                        <div class="flex">
+                                            <img width="45px" src="{% static 'img/form_save_agree.svg' %}">
+                                            <h2>Rental Agreement Details</h2>
+                                        </div>
+                                    </div>
+                                    <div class="card-list">
+                                        <div class="summary-card">
+                                            <div class="flex flex-between">
+                                                <p>Agreement Details</p>
+                                                {% comment %} <p>100% Complete</p> {% endcomment %}
+                                            </div>
+                                            <div>
+                                                <button class="btn edit-btn">Edit</button>
+                                            </div>
+                                        </div>
+                                        <div class="summary-card">
+                                            <div class="flex flex-between">
+                                                <p>Property Details</p>
+                                                {% comment %} <p>100% Complete</p> {% endcomment %}
+                                            </div>
+                                            <div>
+                                                <button class="btn edit-btn">Edit</button>
+                                            </div>
+                                        </div>
+                                        <div class="summary-card">
+                                            <div class="flex flex-between">
+                                                <p>Landlord Details</p>
+                                                {% comment %} <p>100% Complete</p> {% endcomment %}
+                                            </div>
+                                            <div>
+                                                <button class="btn edit-btn">Edit</button>
+                                            </div>
+                                        </div>
+                                        <div class="summary-card">
+                                            <div class="flex flex-between">
+                                                <p>Tenant Details</p>
+                                                {% comment %} <p>100% Complete</p> {% endcomment %}
+                                            </div>
+                                            <div>
+                                                <button class="btn edit-btn">Edit</button>
+                                            </div>
+                                        </div>
+                                        
+                                        {% comment %} <!-- <div class="summary-card heading">
+                                            <div class="flex">
+                                                <img width="45px" src="https://assets.nobroker.in/nb-new/public/LegalServices/ra_icon.svg">
+                                                <h2>Rental Agreement Details</h2>
+                                            </div>
+                                        </div> --> {% endcomment %}
+                                        <div class="summary-card">
+                                            <div class="flex flex-between">
+                                                <p>Contract Details</p>
+                                                {% comment %} <p>100% Complete</p> {% endcomment %}
+                                            </div>
+                                            <div>
+                                                <button class="btn edit-btn">Edit</button>
+                                            </div>
+                                        </div>
+                                        {% comment %} <!-- <div class="summary-card">
+                                            <div class="flex flex-between">
+                                                <p>Property Details</p>
+                                                <p>100% Complete</p>
+                                            </div>
+                                            <div>
+                                                <button class="btn edit-btn">Edit</button>
+                                            </div>
+                                        </div> --> {% endcomment %}
+                                        
+                                    </div>
+                                    <div class="agree-doc">
+                                        <button type="button" id="preview-agreement" class="btn-doc" style="color: black;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="black" class="bi bi-eye" viewBox="0 0 16 16">
+                                                <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                                                <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                                              </svg>    
+                                        Preview</button>
+                                        
+                                        <button type="button" id="share-agreement" class="btn-doc">
+                                            <a style="text-decoration: none; color: black; display: flex; align-items-center; gap: 8px" href="https://wa.me/919923099239">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="black" class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                                            </svg>
+                                        Contact Us</a></button>
+                                    </div>
+                                </div>
+
+                                <div class="payment-card">
+                                    <div class="top">
+                                        <div class="flex">
+                                            <img width="40px" src="{% static 'img/form_save_agree.svg' %}">
+                                            <p>Rental Agreement</p>
+                                        </div>
+                                    </div>
+                                    <div class="middle">
+                                        <div>
+                                            <p>Rental Agreement</p>
+                                            <div class="flex flex-between">
+                                                <span>Stamp Duty Fee</span>
+                                                <span id="stampDutyFee">₹1000</span>
+                                            </div>
+                                            <div class="flex flex-between">
+                                                <span>Registration Fee</span>
+                                                <span>₹1000</span>
+                                            </div>
+                                            <div class="flex flex-between">
+                                                <span>Convenience Fee</span>
+                                                <span>₹1000</span>
+                                            </div>
+                                            {% comment %} <!-- <div class="flex flex-between">
+                                                <span>Govt Registration Fee</span>
+                                                <span>₹1000</span>
+                                            </div> --> {% endcomment %}
+                                        </div>
+                                        <div>
+                                            <div class="flex flex-between">
+                                                <span style="font-size: 1.3rem; font-weight: bold;">Coupon</span>
+                                                <button type="button" id="check_coupon" class="" style="padding: 8px 12px; background-color: #fd3752; border: none; outline: none; color: white; border-radius: 5px; cursor: pointer;">Avail Coupon</button>
+                                            </div>
+                                            <div class="flex flex-between">
+                                                <span>Coupon Code</span>
+                                                <span id="coupon_code_field">None</span>
+                                            </div>
+                                            <div class="flex flex-between">
+                                                <span>Deduction Amount</span>
+                                                <span id="coupon_amount_field">None</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="bottom">
+                                        <div>
+                                            <p>Total Amount</p>
+                                            <span id="payment_total_amount">₹4000</span>
+                                        </div>
+                                        <button type="submit" id="submit-btn">Pay <span id="payable_amount">0.00</span></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="bottom-bar form-bottom-bar">
+                        <div>
+                            <span style="font-size: 1.2rem; font-weight: bold;">₹</span> <span id="totalPrice">0</span> 
+                        </div>
+                        <div class="buttons button_space">
+                            <button type="button" class="next_button">Save and Continue</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="blackout hidden">
+
+        </div>
+    
+        <div id="couponPopup" class="popup hidden" >
+            <div class="popup-close">
+                <span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 12">
+                        <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                      </svg>
+                </span>
+            </div>
+    
+            <div>
+                <img width="100%" src="https://img.freepik.com/free-vector/discount-concept-illustration_114360-1852.jpg?w=1380&t=st=1663088504~exp=1663089104~hmac=ae91bb821b0965f2ee29f0c9e8bd6db03979dc8f02888664339c489e26b765cb" alt="coupon">
+            </div>
+            <div>
+                <h4 style="width: 80%; margin: auto;">Get Discount on your Purchase using the Coupon</h4>
+            </div>
+            <form id="couponForm">
+                <input type="hidden" id="coupon_csrf" name="coupon_csrf_token" value="{{ csrf_token }}">
+                <input id="coupon-input" type="text" name="coupon-input" placeholder="Enter the Coupon Code">
+                <button id="">Apply</button>
+            </form>
+            <div style="margin-top: 15px;">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam deserunt</p>
+            </div>
+    
+            <div id="slider" class="slider" >
+                <div id="successful" class="hidden" style="text-align: center;">
+                    <div class="slider-animation">
+                        <lottie-player src="https://assets5.lottiefiles.com/private_files/lf30_t58qlnnx.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"    loop autoplay></lottie-player>
+                    </div>
+                    <div class="slider-text">
+                        <p id="success">Congratulations</p>
+                        <p>You have successfully avail <br> the Coupon.</p><br>
+                        <button>OK</button>
+                    </div>
+                </div>
+                <div id="fail" class="hidden">
+                    <div class="slider-animation">
+                        <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_tl52xzvn.json"  background="transparent"  speed="0.7"  style="width: 200px; height: 200px;"  loop autoplay></lottie-player>
+                    </div>
+                    <div class="slider-text">
+                        <p id="unsuccess">Unsuccesful</p>
+                        <p>Sorry, the coupon you have entered <br> is not correct or not available</p><br>
+                        <button>Ok</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+    
+
+    
+
+    <div id="preview-panel" class="preview-panel preview-hidden">
+        
+        <div class="top flex flex-between">
+            <div  class="flex">
+                <span type="button" id="close-preview">
+                    <svg  xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="grey" class="bi bi-arrow-left-short" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd" d="M12 8a.5.5 0 0 1-.5.5H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5a.5.5 0 0 1 .5.5z"/>
+                    </svg>
+                </span>
+                
+                Preview Agreement
+            </div>
+            {% comment %} <!-- <div>
+                <button type="button" class="flex" style="background-color: white; border: none">
+                    <span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-share-fill" viewBox="0 0 16 16">
+                            <path d="M11 2.5a2.5 2.5 0 1 1 .603 1.628l-6.718 3.12a2.499 2.499 0 0 1 0 1.504l6.718 3.12a2.5 2.5 0 1 1-.488.876l-6.718-3.12a2.5 2.5 0 1 1 0-3.256l6.718-3.12A2.5 2.5 0 0 1 11 2.5z"/>
+                        </svg>
+                        Share Agreement
+                    </span>
+                </button>
+            </div> --> {% endcomment %}
+        </div>
+        <div id="html_agreement" class="middle canvas_div_pdf">
+            <div id="pdf-container" class="pdf-container" style="line-height: 160%;text-align: justify; padding: 2rem;">
+                <table style="width: 100%; padding: 2rem; border-collapse: collapse;">
+                    <thead>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="20%">Particulars</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="15%">Amount Paid</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="25%">GRN No.</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="15%">Date</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="25%">Deface No.</td>
+                    </thead>
+                    <tr>
+                        <td style="border: 2px solid black; padding: 5px;">Stamp Duty</td>
+                        <td style="border: 2px solid black; padding: 5px;">Rs. </td>
+                        <td style="border: 2px solid black; padding: 5px;">_</td>
+                        <td style="border: 2px solid black; padding: 5px;">_</td>
+                        <td style="border: 2px solid black; padding: 5px;">_</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 2px solid black; padding: 5px;">Registration Fee</td>
+                        <td style="border: 2px solid black; padding: 5px;">Rs.</td>
+                        <td style="border: 2px solid black; padding: 5px;">_</td>
+                        <td style="border: 2px solid black; padding: 5px;">_</td>
+                        <td style="border: 2px solid black; padding: 5px;">_</td>
+                    </tr>
+                </table>
+                <br>
+                <h2 style="text-align: center;">LEAVE AND LICENSE AGREEMENT</h2><br>
+                <p style="text-align: center;">This agreement is made and executed on <strong class="previewTodayDate"></strong> at Pune</p>
+                <p style="text-align: center;">Between,</p><br>
+                <p>HEREINAFTER called 'the Licensor' (which expression shall mean and include the Licensor above named as also his respective heirs, successors, assigns, executors and administrators)</p><br>
+                <p>HEREINAFTER called 'the Licensee' (which expression shall mean and include only Licensee above named).</p>
+                <p>WHEREAS the Licensor is absolutely seized and possessed of and or otherwise well and sufficiently entitled to all that constructed portion being unit described in Schedule hereunder written and are hereafter for the sake of brevity called or referred to as Licensed Premises and is/are desirous of giving the said premises on Leave and License basis under Section 24 of the Maharashtra Rent Control Act, 1999.</p><br>
+        
+                <p>AND WHEREAS the Licensee herein is in need of temporary premises for his <strong> _______________ </strong> use has/have approached the Licensor with a request to allow the Licensee herein to use and occupy the said premises on Leave and License basis for a period of <strong class="previewDuration"></strong> Months commencing from <strong class="previewStartDate">  </strong> and ending on<strong> _______________ </strong>, on terms and subject to conditions hereafter appearing. AND WHEREAS the Licensor have agreed to allow the Licensee herein to use and occupy the said Licensed premises for his aforesaid purposes only, on Leave and License basis for above mentioned period, on terms and subject to conditions hereafter appearing;</p><br>
+        
+        
+                <p>NOW THEREFORE IT IS HEREBY AGREED TO, DECLARED AND RECORDED BY AND BETWEEN THE PARTIES HERETO AS FOLLOWS:</p>
+                <ul>
+                    <li>
+                        <h4> Period:</h4> That the Licensor hereby grants to the Licensee herein a revocable leave and license, to occupy the Licensed Premises, described in Schedule hereunder written without creating any tenancy rights or any other rights, title and interest in favour of the Licensee for a period of <strong class="previewDuration2"> </strong> Months commencing from <strong class="previewStartDate2"> </strong> and ending on<strong> _______________ </strong>
+                    </li><br>
+                    <li>
+                        <h4> Licensee Fee & Deposit: </h4>That the Licensee shall pay to the Licensor <strong class="previewMonthlyRent"> </strong> Per month towards the compensationThe amount of monthly compensation shall be payable within first five days of the concerned month of Leave and License.Licensee shall also pay to the Licensor Rs. <strong class="previewRefundableDeposite">  </strong> interest free refundable deposit, for the use of the said licensed premises.
+                    </li><br>
+                    <li>
+                        <h4> Payment of Deposit: _______________</h4>
+                    </li><br>
+        
+                    <li>
+                       <h4> Maintenance Charges:</h4> That the all outgoings including all rates, taxes, levies, assessment, maintenance charges, non occupancy charges, etc. in respect of the said premises shall be paid by the Licensor.
+                    </li><br>
+        
+                    <li>
+                        <h4>Electricity Charges: </h4>The Licensee herein shall pay the electricity bills directly for energy consumed on the licensed premises and should submit original receipts to Licensor indicating that the electricity bills are paid.
+                    </li><br>
+        
+                    <li>
+                        <h4>Usage, Damages and Repairs: </h4>That the Licensed premises shall only be used by the Licensee for <strong> _______________ </strong>  purpose. The Licensee shall maintain the said premises in its existing condition and damage, if any, caused to the said premises, the same shall be repaired by the Licensee at its own cost subject to normal wear and tear. The Licensee shall not do anything in the said premises which is or is likely to cause a nuisance to the other occupants of the said building or to the prejudice in any manner to The rights of Licensor in respect of said premises or shall not do any unlawful activities prohibited By State or Central Government.
+                    </li><br>
+                    <li>
+                        <h4>Alteration:</h4> That the Licensee shall not make or permit to do any alteration or addition to the construction or arrangements (internal or external) to the Licensed premises without previous consent in writing from the Licensor.
+                    </li><br>
+                    <li>
+                        <h4>No Tenancy: </h4>That the Licensee shall not claim any tenancy right and shall not have any right to transfer, assign, and sublet or grant any license or sub-license in respect of the Licensed Premises or any part thereof and also shall not mortgage or raise any loan against the said premises.
+                    </li><br>
+                    <li>
+                        <h4>Inspection:</h4> That, the Licensor shall on reasonable notice given by the Licensor to the Licensee shall have a right of access either by himself or through authorized representative to enter, view and inspect the Licensed premises at reasonable intervals.
+                    </li><br>
+                    <li>
+                        <h4>Lock in period:</h4> Both the parties have agreed to set a lock-in period of <strong> _______________ </strong> months during which neither the Licensor shall ask the Licensee to vacate the premises, nor the Licensee shall vacate the premises on his own during the lock-in period.In spite of this mandatory clause, if the Licensee leaves the premises for whatsoever reason, he shall pay to the Licensor license fee for the remaining lock-in period at the rate of agreed upon in the agreement. On the other hand, Licensor shall compensate the Licensee for loss and inconvenience caused to the Licensee if he has been asked to vacate the premises.
+                    </li><br>
+                    <li>
+                        <h4>Cancellation:</h4> That, if the Licensee commits default in regular and punctual payments of monthly compensation as herein before mentioned or commit/s breach of any of the terms, covenants and conditions of this agreement or if any legislation prohibiting the Leave and License is imposed, the Licensor shall be entitled to revoke and / or cancel the License hereby granted, by giving notice in writing of one month and the Licensee too will have the right to vacate the said premises by giving a notice in writing of one month to the Licensor as mentioned earlier
+                    </li><br>
+                    <li>
+                        <h4>Possession: </h4>That the immediately at on the expiration or termination or cancellation of this agreement the Licensee shall vacate the said premises without delay with all his goods and belongings. In the event of the Licensee failing and / or neglecting to remove himself and / or his articles from the said premises on expiry or sooner determination of this Agreement, the Licensor shall be entitled to recover damages at the rate of double the daily amount of compensation per day and or alternatively the Licensor shall be entitled to remove theLicensee and his belongings from the Licensed premises, without recourse to the Court of Law.
+                    </li><br>
+                    <li>
+                        <h4>Furniture and Appliances: </h4>The said premises is having the Furniture and Appliances mentioned in the Schedule II. The Licensee shall maintain the said Furniture and Appliances in the said premises in its existing condition and damage, if any, caused to the said Furniture and Appliances, the same shall be repaired by the Licensee/s at its own cost subject to normal wear and tear
+                    </li><br>
+                    <li>
+                        <h4>Registration: </h4>This Agreement is to be registered and the expenditure of Stamp duty and registration fees and incidental charges, if any, shall be borne by the both Licensor and licensee .
+                    </li><br>
+                </ul>
+                <h3 style="text-align: center;">SCHEDULE I:</h3>
+                <p>
+                    (Being the correct description of Flat which is the subject matter of these presents) All that constructed portion being residential unit bearing <strong> _______________ </strong>, Built-up (Area):<strong> _______________ </strong>, situated on the <strong> _______________ </strong>Floor of a Building known as <strong> _______________ </strong> standing on the plot <strong> _______________ </strong> of land bearing <strong> _______________ </strong>,<strong> _______________ </strong>of Village: <strong> <strong> _______________ </strong></strong>, situated within the revenue limits of Tehsil <strong> _______________ </strong> and Dist <strong> _______________ </strong> and situated within the limits of <strong> _______________ </strong>Municipal Corporation.
+                </p><br><br><br><br><br>
+                <h3 style="text-align: center;">SCHEDULE II</h3>
+                <p style="text-align: center;">
+                    (Being the correct description of premise Apartment/Flat which is the subject matter of these presents)
+                </p>
+                <table style="width: 100%; margin-top: 8px; padding: 2rem; border-collapse: collapse;">
+                    <thead>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="20%">Sr No.</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="20%">Item</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="60%">Number of Units</td>
+                    </thead>
+                </table><br>
+                <p>
+                    IN WITNESS WHEREOF the parties hereto have set and subscribed their respective signatures by way of putting thumb impression electronic signature hereto in the presence of witness, who are identifying the executants, on the day, month and year first above written.
+                </p><br>
+                <table style="width: 100%; margin-top: 8px; padding: 2rem; border-collapse: collapse;">
+                    <thead>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="30%">Name and Address</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="25%">Photo</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="25%">Thumb Impression</td>
+                        <td style="font-weight: bold; border: 2px solid black; padding: 5px;" width="20%">Digitally Signed</td>
+                    </thead>
+                    <tr>
+                        <td style="border: 2px solid black; padding: 5px;">
+                            <p>Witness of execution</p>
+                            <p>Name: <strong>__________________</strong></p>
+                            <p><strong>_________________________</strong></p>
+                            <p>UID: <strong>____________________</strong></p>
+                            <p>Address: <strong>________________</strong></p>
+                            <p><strong>_________________________</strong></p>
+                        </td>
+                        <td style="border: 2px solid black; padding: 5px;">
+                            <p class="content-box"> Photo</p>
+                        </td>
+                        <td style="border: 2px solid black; padding: 5px;">
+                            <p class="content-box"> Thumb</p>
+                        </td>
+                        <td style="border: 2px solid black; padding: 5px;">
+        
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="border: 2px solid black; padding: 5px;">
+                            <p>Witness of execution</p>
+                            <p>Name: <strong>__________________</strong></p>
+                            <p><strong>_________________________</strong></p>
+                            <p>UID: <strong>____________________</strong></p>
+                            <p>Address: <strong>________________</strong></p>
+                            <p><strong>_________________________</strong></p>
+                        </td>
+                        <td style="border: 2px solid black; padding: 5px;">
+                            <p class="content-box"> Photo</p>
+                        </td>
+                        <td style="border: 2px solid black; padding: 5px;">
+                            <p class="content-box"> Thumb</p>
+                        </td>
+                        <td style="border: 2px solid black; padding: 5px;">
+                            
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="bottom">
+            <button id="downloadAgreement" type="button" class="btn" onclick="generate_PDF()">Download Draft</button>
+        </div>
+    </div>
+    
+
+    <script>
+        
+        function generate_PDF(){
+            $("#pdf-container").printThis();
+
+        }
+
+        // document.getElementById("downloadAgreement").addEventListener("click", );
+    </script>
+    <script src="{% static 'index.js' %}"></script>
+</body>
+</html>
