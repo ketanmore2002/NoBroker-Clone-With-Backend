@@ -15,9 +15,9 @@ import os
 import django_heroku
 
 
-# SECURE_SSL_REDIRECT = True
-# SESSION_COOKIE_SECURE = True
-# CSRF_COOKIE_SECURE = True
+SECURE_SSL_REDIRECT = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # CONN_MAX_AGE = None
 
@@ -108,25 +108,12 @@ WSGI_APPLICATION = 'tenently.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'd9ic0e5fo4t40k',
-        'USER': 'edklppnilplmae',
-        'PASSWORD': '07b49a3e16f2f2bfaa61c3ac2c66c99fbd4b2ac4e6dd20de92cbccaf6f703bf9',
-        'HOST': 'ec2-44-207-253-50.compute-1.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
-
+     'default': {
+         'ENGINE': 'django.db.backends.sqlite3',
+         'NAME': BASE_DIR / 'db.sqlite3',
+     }
+ }
 
 
 DISABLE_SERVER_SIDE_CURSORS = True  # required when using pgbouncer's pool_mode=transaction
