@@ -18,13 +18,13 @@ Tenantly is a Django application that serves as a clone of NoBroker.com/rental-a
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/MyRentAgreementApp.git
+   git clone https://github.com/ketanmore2002/NoBroker-Clone-With-Backend.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd MyRentAgreementApp
+   cd tenantly.in-main
    ```
 
 3. Install dependencies:
