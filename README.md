@@ -1,4 +1,4 @@
-```markdown
+
 # Tenantly
 
 Tenantly is a Django application that serves as a clone of NoBroker.com/rental-agreement, specifically focusing on rental agreements. It allows users to create rental agreements for their properties and provides a seamless dashboard experience for both users and admins. The application integrates the Paytm payments portal for convenient and secure payment processing.
